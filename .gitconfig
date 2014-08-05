@@ -1,0 +1,24 @@
+[core]
+	editor = vim
+	autocrlf = false
+[push]
+	default = simple
+[color]
+	ui = true
+[alias]
+	st = status
+	ci = commit
+	cm = commit -m
+	br = branch
+	co = checkout
+	df = diff
+	lg = log
+	ps = push
+	pl = pull --rebase
+	rb = rebase
+	aa = add .
+	tr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit -10
+	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
+	fixup = commit --fixup
+	sq = commit --allow-empty --squash
+	ri = rebase --interactive --autosquash
