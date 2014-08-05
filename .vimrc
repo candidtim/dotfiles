@@ -1,3 +1,15 @@
+" Enable pathogen
+execute pathogen#infect()
+
+" NERDTree configuration
+" Open NERDTree if vim called with no arguments
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Close vim if all files closed
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Ctrl-n toggles NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
 " Behave in Windows style
 set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
