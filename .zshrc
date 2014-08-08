@@ -3,6 +3,7 @@ ZSH_THEME="candidtim"
 
 bindkey -v
 unsetopt share_history
+eval `dircolors ~/.solarized/dircolors`
 
 plugins=(git mvn colorize command-not-found themes gradle vagrant docker jira lwd sudo web-search wd)
 
