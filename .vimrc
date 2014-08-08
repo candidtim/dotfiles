@@ -43,11 +43,7 @@ set directory=~/.vimswap
 
 " Show 120 characters limit column
 set colorcolumn=120
-highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
-
-" NERDTree to use dark grey separator with no | inside
-highlight VertSplit ctermfg=darkgrey guifg=darkgrey
-set fillchars-=vert:\|
+highlight ColorColumn ctermbg=black guibg=black
 
 " Key mappings
 imap <C-Space> <C-n>
