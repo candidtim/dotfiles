@@ -32,6 +32,7 @@ set t_Co=16
 set encoding=utf-8
 set hidden
 set title
+set scrolloff=3
 
 " Use system clipboard as default register
 set clipboard=unnamedplus
