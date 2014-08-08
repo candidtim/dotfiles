@@ -33,6 +33,9 @@ set encoding=utf-8
 set hidden
 set title
 
+" Use system clipboard as default register
+set clipboard=unnamedplus
+
 " Store backup/swap files in a dedicated directory
 set backupdir=~/.vimbackup
 set directory=~/.vimswap
