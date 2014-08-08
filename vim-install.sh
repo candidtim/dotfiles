@@ -23,3 +23,7 @@ git clone git://github.com/tpope/vim-fugitive.git ~/.vim/bundle/fugitive
 # ctrl.p
 # https://github.com/kien/ctrlp.vim
 git clone https://github.com/kien/ctrlp.vim.git ~/.vim/bundle/ctrlp
+
+# Solarized
+# https://github.com/altercation/vim-colors-solarized
+git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/solarized

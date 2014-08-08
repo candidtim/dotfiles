@@ -21,10 +21,14 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
+" Solarized colors
+set background=dark
+colorscheme solarized
+
 " General config
 syntax enable
 set nocompatible
-set t_Co=256
+set t_Co=16
 set encoding=utf-8
 set hidden
 set title
@@ -45,8 +49,9 @@ set fillchars-=vert:\|
 imap <C-Space> <C-n>
 imap <C-@> <C-Space>
 map <C-n> :enew<CR>
-map <C-t> :bnext<CR>
-map <C-w> :bp <BAR> bd #<CR>
+map <F6> :bp <BAR> bd #<CR>
+map <F7> :bp<CR>
+map <F8> :bn<CR>
 
 " Indentation - 2 spaces, automatic
 set smartindent
