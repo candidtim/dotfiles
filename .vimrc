@@ -33,6 +33,7 @@ set encoding=utf-8
 set hidden
 set title
 set scrolloff=3
+set hlsearch
 
 " Use system clipboard as default register
 set clipboard=unnamedplus
@@ -46,6 +47,7 @@ set colorcolumn=120
 highlight ColorColumn ctermbg=black guibg=black
 
 " Key mappings
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 imap <C-Space> <C-n>
 imap <C-@> <C-Space>
 map <C-n> :enew<CR>
