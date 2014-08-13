@@ -35,6 +35,10 @@ set title
 set scrolloff=3
 set hlsearch
 
+" Folding
+set foldmethod=syntax
+set foldlevelstart=2
+
 " Use system clipboard as default register
 set clipboard=unnamedplus
 
