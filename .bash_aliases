@@ -13,6 +13,9 @@ alias ls='ls -hF --color=auto'
 alias ll='ls -Al'
 alias l=ls
 
+# tmux with correct colors
+alias tmux="TERM=screen-256color-bce tmux"
+
 # git
 alias g=git
 alias gg='git st'
