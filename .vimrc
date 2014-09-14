@@ -23,6 +23,7 @@ let g:airline_powerline_fonts = 1
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
+map <C-F12> :CtrlPTag<CR>
 
 " Solarized colors
 set background=dark
@@ -61,6 +62,7 @@ map <C-n> :enew<CR>
 map <F6> :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
 map <F8> :bn<CR>
+map <F10> :!make<CR>
 
 " Indentation - 2 spaces, automatic
 set smartindent
