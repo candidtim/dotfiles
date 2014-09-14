@@ -10,6 +10,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 map <C-e> :NERDTreeToggle<CR>
 
+" Enable file types for NERDCommenter
+filetype plugin on
+
 " AirLine configuration
 set laststatus=2
 set noshowmode
@@ -74,3 +77,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Allow local customizations, ignore if not found
 silent! so .vimlocal
+
+" Search tags correctly
+set tags=tags;/

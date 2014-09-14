@@ -6,6 +6,10 @@ mkdir ~/.vimbackup
 # https://github.com/scrooloose/nerdtree
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
+# NERDCommenter
+# https://github.com/scrooloose/nerdcommenter
+git clone https://github.com/scrooloose/nerdcommenter.git ~/.vim/bundle/nerdcommenter
+
 # vim-airline
 # https://github.com/bling/vim-airline
 git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
@@ -27,3 +31,7 @@ git clone https://github.com/kien/ctrlp.vim.git ~/.vim/bundle/ctrlp
 # Solarized
 # https://github.com/altercation/vim-colors-solarized
 git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/solarized
+
+# vim-scala
+# https://github.com/derekwyatt/vim-scala
+git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala
