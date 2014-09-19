@@ -32,6 +32,10 @@ git clone https://github.com/kien/ctrlp.vim.git ~/.vim/bundle/ctrlp
 # https://github.com/altercation/vim-colors-solarized
 git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/solarized
 
+# Syntastic
+# https://github.com/scrooloose/syntastic
+git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+
 # vim-scala
 # https://github.com/derekwyatt/vim-scala
 git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala

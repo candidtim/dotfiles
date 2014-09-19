@@ -30,6 +30,10 @@ map <C-F11> :!ctags -R .<CR>
 set background=dark
 colorscheme solarized
 
+" Syntastic signs
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '✗'
+
 " General config
 syntax enable
 set nocompatible
@@ -56,7 +60,7 @@ set colorcolumn=120
 highlight ColorColumn ctermbg=black guibg=black
 
 " Key mappings
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Space> :nohlsearch<Bar>:execute 'sign unplace * buffer=' . bufnr('')<Bar>:echo<CR>
 imap <C-Space> <C-n>
 imap <C-@> <C-Space>
 map <C-n> :enew<CR>
