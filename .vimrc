@@ -24,6 +24,7 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 map <C-F12> :CtrlPTag<CR>
+map <C-F11> :!ctags -R .<CR>
 
 " Solarized colors
 set background=dark
