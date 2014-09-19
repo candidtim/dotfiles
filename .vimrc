@@ -43,6 +43,7 @@ set hidden
 set title
 set scrolloff=3
 set hlsearch
+set mouse=a
 
 " Folding
 set foldmethod=syntax
