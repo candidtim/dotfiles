@@ -31,8 +31,8 @@ set background=dark
 colorscheme solarized
 
 " Syntastic signs
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '✗'
+let g:syntastic_error_symbol = '->'
+let g:syntastic_warning_symbol = '->'
 
 " General config
 syntax enable
