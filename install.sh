@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install packages
-sudo apt-get install curl python-pip vim vim-gtk
+sudo apt-get install curl python-pip vim vim-gtk xclip
 
 # oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
@@ -13,7 +13,7 @@ sudo pip install virtualenvwrapper
 # generate new ssh key
 ssh-keygen -t rsa
 echo New public key:
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub | xclip
 echo -- END --
 
 # basic directories
