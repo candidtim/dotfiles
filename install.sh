@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install packages
-sudo apt-get -y install curl python-pip vim vim-gtk xclip git
+sudo apt-get -y install curl python-pip vim vim-gtk xclip git zsh
 
 # oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
