@@ -13,6 +13,7 @@ sudo pip install virtualenvwrapper
 # generate new ssh key
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
 echo New public key:
+cat ~/.ssh/id_rsa.pub
 cat ~/.ssh/id_rsa.pub | xclip
 echo -- END --
 
