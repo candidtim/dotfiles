@@ -13,6 +13,9 @@ alias ls='ls -hF --color=auto'
 alias ll='ls -Al'
 alias l=ls
 
+# common find operations
+alias lf='find . -name'
+
 # tmux with correct colors
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -38,3 +41,4 @@ alias vg=vagrant
 
 # docker
 alias dk=docker
+alias dkillall="docker ps -a && docker ps -a -q | xargs docker kill && dk ps -a -q | xargs docker rm && docker ps -a"
