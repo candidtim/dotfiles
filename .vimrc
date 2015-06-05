@@ -69,7 +69,8 @@ map <C-n> :enew<CR>
 map <F6> :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
 map <F8> :bn<CR>
-map <F10> :!make<CR>
+imap <F7> <Esc> :bp<CR>
+imap <F8> <Esc> :bn<CR>
 
 " Indentation - 2 spaces, automatic
 set smartindent
