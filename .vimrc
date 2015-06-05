@@ -58,7 +58,8 @@ set directory=~/.vimswap
 
 " Show 120 characters limit column
 set colorcolumn=120
-highlight ColorColumn ctermbg=black guibg=black
+" in GUI - using solarized s:base02
+highlight ColorColumn ctermbg=black guibg=#073642
 
 " Key mappings
 nnoremap <silent> <Space> :nohlsearch<Bar>:execute 'sign unplace * buffer=' . bufnr('')<Bar>:echo<CR>
