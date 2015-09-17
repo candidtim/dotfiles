@@ -23,27 +23,34 @@ let g:airline_powerline_fonts = 1
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
-map <C-F12> :CtrlPTag<CR>
-map <C-F11> :!ctags -R .<CR>
+
+" Ag for ack.vim
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Solarized colors
 set background=dark
+set t_Co=16
 colorscheme solarized
 
 " Syntastic signs
 let g:syntastic_error_symbol = '->'
 let g:syntastic_warning_symbol = '->'
 
+" vim-slime
+let g:slime_target = "tmux"
+
 " General config
 syntax enable
 set nocompatible
-set t_Co=16
 set encoding=utf-8
 set hidden
 set title
 set scrolloff=3
 set hlsearch
 set mouse=a
+set ignorecase
+set smartcase
+set incsearch
 
 " Folding
 set foldmethod=syntax
@@ -59,18 +66,22 @@ set directory=~/.vimswap
 " Show 120 characters limit column
 set colorcolumn=120
 " in GUI - using solarized s:base02
-highlight ColorColumn ctermbg=black guibg=#073642
+highlight ColorColumn ctermbg=grey guibg=grey
 
 " Key mappings
 nnoremap <silent> <Space> :nohlsearch<Bar>:execute 'sign unplace * buffer=' . bufnr('')<Bar>:echo<CR>
 imap <C-Space> <C-n>
 imap <C-@> <C-Space>
-map <C-n> :enew<CR>
+map <F1> <Esc>
+imap <F1> <Esc>
 map <F6> :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
 map <F8> :bn<CR>
 imap <F7> <Esc> :bp<CR>
 imap <F8> <Esc> :bn<CR>
+map <F9> yiw:Ack <C-R>"<CR>
+map <C-F12> :CtrlPTag<CR>
+map <C-F11> :!ctags -R .<CR>
 
 " Indentation - 2 spaces, automatic
 set smartindent
