@@ -89,6 +89,9 @@ map <F9> yiw:Ack <C-R>"<CR>
 map <C-F12> :CtrlPTag<CR>
 map <C-F11> :!ctags -R .<CR>
 
+no <down> ddp
+no <up> ddkP
+
 " Indentation - 2 spaces, automatic
 set smartindent
 set tabstop=2

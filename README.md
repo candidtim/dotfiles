@@ -4,4 +4,4 @@
 
 ## Fresh install
 
-wget https://raw.githubusercontent.com/candidtim/dotfiles/master/install.sh -O - | sh
+    wget https://raw.githubusercontent.com/candidtim/dotfiles/master/install.sh -O - | sh
