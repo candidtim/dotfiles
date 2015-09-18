@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install packages
-sudo apt-get -y install curl python-pip vim vim-gtk xclip git zsh
+sudo apt-get -y install curl python-pip vim vim-gtk xclip git zsh silversearcher-ag
 
 # oh-my-zsh
 curl -L http://install.ohmyz.sh | sh

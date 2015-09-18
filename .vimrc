@@ -1,6 +1,9 @@
 " Enable pathogen
 execute pathogen#infect()
 
+" Remap Leader
+let mapleader = ","
+
 " NERDTree configuration:
 " Open NERDTree if vim called with no arguments
 " Close vim if all files closed
@@ -38,6 +41,9 @@ let g:syntastic_warning_symbol = '->'
 
 " vim-slime
 let g:slime_target = "tmux"
+
+" Easy Motion
+map <Leader> <Plug>(easymotion-prefix)
 
 " General config
 syntax enable

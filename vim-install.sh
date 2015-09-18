@@ -36,6 +36,14 @@ git clone git://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/so
 # https://github.com/scrooloose/syntastic
 git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
 
+# ack.vim, for ag in fact
+# https://github.com/mileszs/ack.vim
+git clone https://github.com/mileszs/ack.vim.git ~/.vim/bundle/ack.vim
+
+# easy motion
+# https://github.com/easymotion/vim-easymotion
+git clone https://github.com/easymotion/vim-easymotion ~/.vim/bundle/vim-easymotion
+
 # vim-scala
 # https://github.com/derekwyatt/vim-scala
 git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala
