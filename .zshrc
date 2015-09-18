@@ -4,7 +4,7 @@ ZSH_THEME="candidtim"
 bindkey -v
 eval `dircolors ~/.solarized/dircolors`
 
-plugins=(git mvn colorize command-not-found themes vagrant docker jira lwd sudo web-search wd)
+plugins=(git colorize command-not-found themes vagrant docker lwd sudo wd)
 
 source $ZSH/oh-my-zsh.sh
 
