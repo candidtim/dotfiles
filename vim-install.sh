@@ -2,6 +2,12 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vi
 mkdir ~/.vimswap
 mkdir ~/.vimbackup
 
+# Neovim
+mkdir -p ~/.config
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
+
+
 # NERDTree
 # https://github.com/scrooloose/nerdtree
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree

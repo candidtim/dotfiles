@@ -1,21 +1,14 @@
 #!/bin/bash
 
 # install packages
-sudo apt-get -y install curl python-pip vim vim-gtk xclip git zsh silversearcher-ag
+sudo apt-get -y install curl python-pip vim vim-gtk git zsh silversearcher-ag
+sudo pip install virtualenvwrapper neovim
 
 # oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
 chsh -s /bin/zsh
 
 # virtualenv wrapper
-sudo pip install virtualenvwrapper
-
-# generate new ssh key
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
-echo New public key:
-cat ~/.ssh/id_rsa.pub
-cat ~/.ssh/id_rsa.pub | xclip
-echo -- END --
 
 # basic directories
 mkdir ~/app
