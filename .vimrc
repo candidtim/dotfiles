@@ -47,6 +47,7 @@ map <Leader> <Plug>(easymotion-prefix)
 
 " General config
 syntax enable
+set cursorline " highlight the line the cursor is on
 set nocompatible
 set encoding=utf-8
 set hidden
@@ -60,7 +61,7 @@ set incsearch
 
 " Folding
 set foldmethod=syntax
-set foldlevelstart=2
+set foldlevelstart=10
 
 " Use system clipboard as default register
 set clipboard=unnamedplus
@@ -88,9 +89,6 @@ imap <F8> <Esc> :bn<CR>
 map <F9> yiw:Ack <C-R>"<CR>
 map <C-F12> :CtrlPTag<CR>
 map <C-F11> :!ctags -R .<CR>
-
-no <down> ddp
-no <up> ddkP
 
 " Indentation - 2 spaces, automatic
 set smartindent

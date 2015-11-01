@@ -2,6 +2,7 @@
   editor = vim
   autocrlf = false
   safecrlf = false
+  excludesfile = ~/.gitignore
 [push]
   default = simple
 [color]
@@ -27,7 +28,11 @@
   ri = rebase --interactive --autosquash
   serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
 [merge]
-  tool = meld
+  tool = vimdiff
   conflictstyle = diff3
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
 [include]
   path = .gitconfiglocal
