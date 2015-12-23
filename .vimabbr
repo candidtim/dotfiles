@@ -1,0 +1,2 @@
+abbr psvm public static void main(String[] args) {<CR>}<esc>O
+abbr sout System.out.println("");<esc>2hi

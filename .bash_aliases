@@ -16,6 +16,12 @@ alias l=ls
 # common find operations
 alias lf='find . -name'
 
+# tmux with correct colors
+alias tmux="TERM=screen-256color-bce tmux"
+
+# NeoVim
+alias nv=nvim
+
 # git
 alias g=git
 alias gg='git st'
