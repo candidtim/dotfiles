@@ -4,17 +4,16 @@ execute pathogen#infect()
 " Remap Leader
 let mapleader = ","
 
-
 " Plug-ins configuration
 
 " NERDTree
 let g:NERDTreeWinPos = "right" " NERDTree on the right side
 map <C-e> :NERDTreeToggle<CR> " Ctrl-e toggles NERDTree
-autocmd StdinReadPre * let s:std_in=1
 " Open NERDTree if vim called with no arguments
+autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close vim if all files closed
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Enable file types for NERDCommenter
 filetype plugin on
@@ -39,6 +38,11 @@ set t_Co=16
 colorscheme solarized
 
 " Syntastic signs
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0 " do not run syntastic when writing before quit (yet run on normal writes)
 let g:syntastic_error_symbol = '=>'
 let g:syntastic_warning_symbol = '->'
 
@@ -59,7 +63,7 @@ set hidden
 set title          " set title in terminal emulator
 set scrolloff=3
 set mouse=a        " enable mouse
-set clipboard=unnamedplus " use system clipboard as default register
+set clipboard^=unnamed,unnamedplus
 " .. search
 set hlsearch       " highlight search results
 set ignorecase     " case-insensitive search, see next one
