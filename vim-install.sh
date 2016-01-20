@@ -53,3 +53,12 @@ git clone https://github.com/easymotion/vim-easymotion ~/.vim/bundle/vim-easymot
 # vim-scala
 # https://github.com/derekwyatt/vim-scala
 git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala
+
+# vim-sline
+# https://github.com/jpalardy/vim-slime
+git clone https://github.com/jpalardy/vim-slime.git ~/.vim/bundle/vim-slime
+
+# YouCompleteMe
+# https://github.com/Valloric/YouCompleteMe
+git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+echo "YouCompleteMe needs to be compiled! Initalize and update submodules, run ./install.sh"
