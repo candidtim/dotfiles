@@ -27,6 +27,14 @@ alias g=git
 alias gg='git st'
 alias gk='gitk&'
 alias gka='gitk --all&'
+alias gdf='git diff --color | diff-so-fancy | less'
+alias gdc='git diff --cached --color | diff-so-fancy | less'
+alias gdt='git difftool'
+alias gs='git stash list | cat'
+function gsa { git stash apply "stash@{$1}" }
+
+# tmux
+alias tmux="TERM=screen-256color-bce tmux"
 
 # python
 alias py=python
@@ -44,4 +52,15 @@ alias vg=vagrant
 
 # docker
 alias dk=docker
-alias dkillall="docker ps -a && docker ps -a -q | xargs docker kill && dk ps -a -q | xargs docker rm && docker ps -a"
+alias dkillall="docker ps -a && docker ps -a -q | xargs docker rm -f && docker ps -a"
+
+# beep
+export BEEP=/usr/share/sounds/ubuntu/stereo/service-login.ogg
+alias beep='paplay $BEEP'
+alias alert='notify-send "$([ $? = 0 ] && echo Done || echo ERROR)" && beep'
+
+# nautilus
+alias nau=nautilus
+
+# desktop controls
+alias susp="lock && systemctl suspend"

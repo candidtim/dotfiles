@@ -2,3 +2,5 @@ tags
 .tags
 .tags_*
 .idea/
+*.iml
+*.ipr

@@ -36,12 +36,14 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 set background=dark
 set t_Co=16
 colorscheme solarized
+let g:solarized_termtrans = 1
 
 " Syntastic signs
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_auto_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_wq = 0 " do not run syntastic when writing before quit (yet run on normal writes)
 let g:syntastic_error_symbol = '=>'
 let g:syntastic_warning_symbol = '->'
@@ -52,6 +54,25 @@ let g:slime_target = "tmux"
 " Easy Motion - use ,w ,j ,k etc.
 map <Leader> <Plug>(easymotion-prefix)
 
+" Vim Wiki
+let g:vimwiki_list = [{'path': '~/Dropbox/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
+
+" ghc-mod
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+
+" file type plugin
+filetype plugin indent on
+
+" neocomplete
+set completeopt=menuone,menu,longest
+let g:deoplete#enable_at_startup = 1
+
+" supertab
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
 
 " General config
 syntax enable
@@ -107,6 +128,8 @@ set expandtab
 
 " File associations
 au BufNewFile,BufRead *.gradle setf groovy
+au FileType haskell nnoremap <buffer> <F3> :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 
 " Behaviour
 " Remove trailing whitespaces on save

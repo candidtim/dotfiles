@@ -13,6 +13,7 @@
   cm = commit -m
   br = branch
   co = checkout
+  co1 = checkout @{-1}
   df = diff
   lg = log
   ps = push

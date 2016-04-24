@@ -58,7 +58,29 @@ git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala
 # https://github.com/jpalardy/vim-slime
 git clone https://github.com/jpalardy/vim-slime.git ~/.vim/bundle/vim-slime
 
+# vim-surround
+# https://github.com/tpope/vim-surround
+git clone git://github.com/tpope/vim-surround.git
+
+# vimwiki
+# http://github.com/vimwiki/vimwiki
+git clone https://github.com/vimwiki/vimwiki.git
+
 # YouCompleteMe
 # https://github.com/Valloric/YouCompleteMe
 git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
 echo "YouCompleteMe needs to be compiled! Initalize and update submodules, run ./install.sh"
+
+echo "Alternative to YouCompleteMe is combination of deoplete/supertab/vimproc"
+echo "Not installing those. See install script to uncomment according lines"
+# git clone https://github.com/Shougo/deoplete.nvim.git
+# git clone https://github.com/ervandew/supertab.git
+# git clone https://github.com/Shougo/vimproc.vim.git
+
+echo "Skipping some plugins, uncomment in script to install them:"
+echo "? typescript-vim"
+# git clone https://github.com/leafgarland/typescript-vim.git
+echo "? neco-ghc"
+# git clone https://github.com/eagletmt/neco-ghc
+echo "? ghcmod-vim"
+# git clone https://github.com/eagletmt/ghcmod-vim.git
