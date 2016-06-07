@@ -54,6 +54,14 @@ git clone https://github.com/easymotion/vim-easymotion ~/.vim/bundle/vim-easymot
 # https://github.com/derekwyatt/vim-scala
 git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala
 
+# vim-javascript
+# https://github.com/pangloss/vim-javascript
+git clone https://github.com/pangloss/vim-javascript.git
+
+# vim-jsx
+# https://github.com/mxw/vim-jsx
+git clone https://github.com/mxw/vim-jsx.git
+
 # vim-sline
 # https://github.com/jpalardy/vim-slime
 git clone https://github.com/jpalardy/vim-slime.git ~/.vim/bundle/vim-slime
