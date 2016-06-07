@@ -63,6 +63,9 @@ map <silent> ts :GhcModSplitFunCase<CR>
 map <silent> tq :GhcModType<CR>
 map <silent> te :GhcModTypeClear<CR>
 
+" vim-jsx
+let g:jsx_ext_required = 0
+
 " file type plugin
 filetype plugin indent on
 
@@ -106,6 +109,9 @@ imap <C-Space> <C-n> " Ctrl-Space to navigate autocomplete proposed values
 imap <C-@> <C-Space> " enable Ctrl-Space for real
 map <F1> <Esc>       " both keys are so close, treat F1 as ESC in case F1 is hit by accident
 imap <F1> <Esc>      " both keys are so close, treat F1 as ESC in case F1 is hit by accident
+map <F2> :w<CR>       " save
+imap <F2> <Esc>:w<CR> " normal+save
+nmap <expr>  S  ':%s/' . @/ . '//g<LEFT><LEFT>'
 " .. buffers
 map <F6> :bp <BAR> bd #<CR> " delete current buffer
 map <F7> :bp<CR>            " switch to previous buffer
@@ -143,3 +149,4 @@ so ~/.vimabbr
 
 " Search tags correctly
 set tags=tags;/
+
