@@ -11,11 +11,6 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt share_history
 
-source "${HOME}/.bash_aliases"
-source "${HOME}/.bash_functions"
-
-if [ -f "${HOME}/.shlocal" ]; then
-  source "${HOME}/.shlocal"
-fi
+source "${HOME}/.allshrc"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
