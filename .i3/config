@@ -26,7 +26,8 @@ bar {
   # height 26
   tray_padding 5
   separator_symbol 
-  font pango:System San Francisco Display, FontAwesome 11
+  # font pango:System San Francisco Display, FontAwesome 11
+  font pango:DejaVu Sans Mono 10, FontAwesome 11
   colors {
     background $bg-color
     separator #757575

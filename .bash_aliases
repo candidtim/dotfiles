@@ -61,6 +61,3 @@ alias alert='notify-send "$([ $? = 0 ] && echo Done || echo ERROR)" && beep'
 
 # nautilus
 alias nau=nautilus
-
-# desktop controls
-alias susp="lock && systemctl suspend"

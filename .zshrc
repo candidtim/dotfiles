@@ -19,5 +19,3 @@ if [ -f "${HOME}/.shlocal" ]; then
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-~/pprojects/hnfetch/hnfetch.py | cowthink -n
