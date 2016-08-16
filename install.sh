@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install packages
-sudo apt-get -y install curl python-pip vim vim-gtk git zsh silversearcher-ag npm thunar
+sudo apt-get -y install curl python-pip vim vim-gtk git zsh silversearcher-ag npm thunar feh
 sudo pip install virtualenvwrapper neovim
 sudo npm install -g diff-so-fancy
 
