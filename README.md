@@ -20,3 +20,7 @@ And following steps are manual for the moment:
  * install Font Awesome
  * install [Arc GTK Theme](https://github.com/horst3180/Arc-theme), and Firefox theme as well
  * install [Moka icons](https://snwh.org/moka)
+
+## Other (yet to automate)
+
+ * Show `sudo` password as you type: `sudo visudo` and add `pwfeedback` after `env_reset` (comma-separated)
