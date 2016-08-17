@@ -56,11 +56,11 @@ git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala
 
 # vim-javascript
 # https://github.com/pangloss/vim-javascript
-git clone https://github.com/pangloss/vim-javascript.git
+git clone https://github.com/pangloss/vim-javascript.git ~/.vim/bundle/vim-javascript
 
 # vim-jsx
 # https://github.com/mxw/vim-jsx
-git clone https://github.com/mxw/vim-jsx.git
+git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx
 
 # vim-sline
 # https://github.com/jpalardy/vim-slime
@@ -68,11 +68,11 @@ git clone https://github.com/jpalardy/vim-slime.git ~/.vim/bundle/vim-slime
 
 # vim-surround
 # https://github.com/tpope/vim-surround
-git clone git://github.com/tpope/vim-surround.git
+git clone git://github.com/tpope/vim-surround.git ~/.vim/bundle/vim-surround
 
 # vimwiki
 # http://github.com/vimwiki/vimwiki
-git clone https://github.com/vimwiki/vimwiki.git
+git clone https://github.com/vimwiki/vimwiki.git ~/.vim/bundle/vimwiki
 
 # YouCompleteMe
 # https://github.com/Valloric/YouCompleteMe
