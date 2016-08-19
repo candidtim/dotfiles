@@ -74,6 +74,9 @@ git clone git://github.com/tpope/vim-surround.git ~/.vim/bundle/vim-surround
 # http://github.com/vimwiki/vimwiki
 git clone https://github.com/vimwiki/vimwiki.git ~/.vim/bundle/vimwiki
 
+# UltiSnips
+git clone https://github.com/SirVer/ultisnips.git ~/.vim/bundle/ultisnips
+
 # YouCompleteMe
 # https://github.com/Valloric/YouCompleteMe
 git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe

@@ -69,13 +69,33 @@ let g:jsx_ext_required = 0
 " file type plugin
 filetype plugin indent on
 
-" neocomplete
-set completeopt=menuone,menu,longest
-let g:deoplete#enable_at_startup = 1
+" UltiSnip
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+" UltiSnips completion function that tries to expand a snippet. If there's no
+" snippet for expanding, it checks for completion window and if it's
+" shown, selects first element. If there's no completion window it tries to
+" jump to next placeholder. If there's no placeholder it just returns TAB key
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+" YCM sets its completion after Vim starts, this is to override it afterwards
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" this maps Enter key to <C-y> to chose the current highlight and close the selection list
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" supertab
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
 
 " General config
 syntax enable
@@ -105,8 +125,6 @@ highlight ColorColumn ctermbg=grey guibg=grey
 " Key mappings
 " .. usability
 nnoremap <silent> <Space> :nohlsearch<Bar>:execute 'sign unplace * buffer=' . bufnr('')<Bar>:echo<CR>
-imap <C-Space> <C-n> " Ctrl-Space to navigate autocomplete proposed values
-imap <C-@> <C-Space> " enable Ctrl-Space for real
 map <F1> <Esc>       " both keys are so close, treat F1 as ESC in case F1 is hit by accident
 imap <F1> <Esc>      " both keys are so close, treat F1 as ESC in case F1 is hit by accident
 map <F2> :w<CR>       " save
