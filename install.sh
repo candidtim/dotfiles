@@ -2,7 +2,7 @@
 
 # install packages
 sudo apt-get -y install curl python-pip vim vim-gtk git zsh silversearcher-ag npm thunar feh build-essential cmake
-sudo pip install virtualenvwrapper neovim
+sudo pip install virtualenvwrapper
 sudo npm install -g diff-so-fancy
 
 # oh-my-zsh
@@ -12,9 +12,9 @@ chsh -s $(which zsh)
 # virtualenv wrapper
 
 # basic directories
-mkdir ~/app
-mkdir ~/projects
-mkdir ~/temp
+mkdir -p ~/app
+mkdir -p ~/projects
+mkdir -p ~/temp
 
 # install dotfiles
 git clone https://github.com/candidtim/dotfiles.git ~/projects/dotfiles
