@@ -16,7 +16,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Enable file types for NERDCommenter
-filetype plugin on
+filetype plugin indent on
 
 " AirLine configuration
 set laststatus=2
@@ -52,7 +52,7 @@ let g:syntastic_warning_symbol = '->'
 let g:slime_target = "tmux"
 
 " Easy Motion - use ,w ,j ,k etc.
-map <Leader> <Plug>(easymotion-prefix)
+map <Leader><Leader> <Plug>(easymotion-prefix)
 
 " Vim Wiki
 let g:vimwiki_list = [{'path': '~/Dropbox/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -107,7 +107,7 @@ set hidden
 set title          " set title in terminal emulator
 set scrolloff=3
 set mouse=a        " enable mouse
-set clipboard^=unnamed,unnamedplus
+set clipboard+=unnamed,unnamedplus
 " .. search
 set hlsearch       " highlight search results
 set ignorecase     " case-insensitive search, see next one
@@ -146,25 +146,47 @@ map <F11> :!ctags -R .<CR>  " generate tags
 
 " Indentation - 2 spaces, automatic
 set smartindent
+set autoindent " copy indent from previous line
 set tabstop=2
+set softtabstop=2
 set shiftwidth=2
-set expandtab
+set expandtab " makes tabs into spaces
 
 " File associations
 au BufNewFile,BufRead *.gradle setf groovy
 au FileType haskell nnoremap <buffer> <F3> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
 
-" Behaviour
-" Remove trailing whitespaces on save
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
 
 " Allow local customizations, ignore if not found
 silent! so ~/.vimlocal
+silent! so .vimlocal
 
-" Load abbreviations
-so ~/.vimabbr
 
-" Search tags correctly
-set tags=tags;/
+so ~/.vimabbr " load abbreviations
 
+
+set tags=./tags;$HOME " search tags correctly in local dir and up to home
+
+set autowrite " autowrite files on change buffer, etc.
+set autoread " autoread files when changed outside
+" ??? set hidden " to fix autowrite...
+
+set nowrap " don't wrap long lines
+
+set backspace=indent,eol,start  " backspace by indent, over lines, start of insert
+
+set showmatch " show matching brackets
+set matchtime=5 " showmatch briefly
+
+set timeoutlen=250 " Esc faster
+
+" TODO: make this work...
+set nolist
+set listchars=tab:>-,trail:.extends:>,precedes:< " unprintable characters
+
+" write with sudo
+comm! W exec 'w !sudo tee % > /dev/null' | e!
+
+" TODO: switch to Vundle...
