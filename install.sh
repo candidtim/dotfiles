@@ -37,6 +37,9 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vimswap ~/.vimbackup
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # .. install plugins
 vim +PluginInstall +qall
+# .. compile YCM with all lanaguages support
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --all
 # .. install powerline fonts for vim-airline
 git clone https://github.com/Lokaltog/powerline-fonts.git ~/.fonts
 fc-cache -vf ~/.fonts/UbuntuMono
