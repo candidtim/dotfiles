@@ -35,7 +35,7 @@ function gsa { git stash apply "stash@{$1}" }
 
 # tmux
 #alias tmux="TERM=screen-256color-bce tmux"
-alias tl='tmux list-sessions'
+alias tls='tmux list-sessions'
 alias ta='tmux attach -t'
 
 # python
