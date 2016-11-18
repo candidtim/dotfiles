@@ -20,6 +20,9 @@ set autowrite           " autowrite files on change buffer, etc.
 set autoread            " autoread files when changed outside
 set clipboard^=unnamed,unnamedplus " copy to clipboard
 set backspace=indent,eol,start     " backspace by indent, over lines, start of insert
+" .. line numbers
+set number              " show line numbers
+set relativenumber      " or actually relative numbers on all lines except current
 " .. search
 set hlsearch            " highlight search results
 set ignorecase          " case-insensitive search, see next one
@@ -127,7 +130,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Solarized
 Plugin 'altercation/vim-colors-solarized'
-set background=dark
+set background=light
 set t_Co=16
 let g:solarized_termtrans = 1
 " cannot activate the colorscheme here becuase bundle is not yet available

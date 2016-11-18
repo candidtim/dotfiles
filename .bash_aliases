@@ -16,8 +16,6 @@ alias l=ls
 # common find operations
 alias lf='find . -name'
 
-# tmux with correct colors
-alias tmux="TERM=screen-256color-bce tmux"
 
 # NeoVim
 alias nv=nvim
@@ -36,6 +34,7 @@ function gsa { git stash apply "stash@{$1}" }
 # tmux
 #alias tmux="TERM=screen-256color-bce tmux"
 alias tls='tmux list-sessions'
+alias ts='tmux new -s'
 alias ta='tmux attach -t'
 
 # python

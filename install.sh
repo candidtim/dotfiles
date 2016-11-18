@@ -44,6 +44,10 @@ cd ~/.vim/bundle/YouCompleteMe
 git clone https://github.com/Lokaltog/powerline-fonts.git ~/.fonts
 fc-cache -vf ~/.fonts/UbuntuMono
 
+# tmux
+mkdir -p ~/.tmux/bundle
+git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/bundle/tmux-resurrect
+
 # i3wm
 sudo apt-get -y install i3 i3blocks xbacklight arandr lxappearance rofi fonts-font-awesome
 mkdir -p ~/.i3
