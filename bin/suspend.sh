@@ -1,2 +1,2 @@
 #!/bin/bash
-~/bin/lock.sh && /bin/systemctl suspend
+~/bin/lock.sh && /bin/systemctl suspend -i

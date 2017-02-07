@@ -69,7 +69,7 @@ imap <F1> <Esc>
 " F2 to generate tags
 map <F2> :!ctags -R .<CR>
 " F9 to search usages of the word under cursor with Ack
-map <F9> yiw:Ack <C-R>"<CR>
+map <F9> yiw:Ack! <C-R>"<CR>
 " F10 to find current file in NERDTree
 map <F10> :NERDTreeFind<CR>
 " F12 to lookup ALL tags
@@ -154,6 +154,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Easy motion
 Plugin 'easymotion/vim-easymotion'
 map <Leader><Leader> <Plug>(easymotion-prefix)
+hi link EasyMotionShade Comment
 
 " Scala
 Plugin 'derekwyatt/vim-scala'
@@ -171,6 +172,9 @@ let g:slime_target = "tmux"
 
 " Vim Surround
 Plugin 'tpope/vim-surround'
+
+" Fugitive
+Plugin 'tpope/vim-fugitive'
 
 " Vim Wiki
 Plugin 'vimwiki/vimwiki'
@@ -215,6 +219,11 @@ endfunction
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 " this maps Enter key to <C-y> to chose the current highlight and close the selection list
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" BufExplorer
+Plugin 'jlanzarotta/bufexplorer'
+map <F3> :BufExplorer<CR>
+imap <F3> <Esc> :BufExplorer<CR>
 
 " Load local plugins if any
 silent! so ~/.vimlocalplugins

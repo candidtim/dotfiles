@@ -1,6 +1,9 @@
+# Exuberant Ctags
 tags
 .tags
 .tags_*
+
+# IDEA
 .idea/
 *.iml
 *.ipr

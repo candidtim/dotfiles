@@ -106,15 +106,15 @@ bindsym $mod+space focus mode_toggle
 #bindsym $mod+d focus child
 
 set $ws1 "1  Chrome"
-set $ws2 "2  Terminals"
+set $ws2 "2  Vim"
 set $ws3 "3  Terminals"
-set $ws4 "4 Scratchpad"
+set $ws4 "4  Terminals"
 set $ws5 "5  VirtualBox"
 set $ws6 "6  Chat"
 set $ws7 "7 Scratchpad"
 set $ws8 "8  Terminals"
 set $ws9 "9  Web"
-set $ws10 "10 Scratchpad"
+set $ws10 "10  Music"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -231,6 +231,9 @@ mode "apps" {
   bindsym Escape mode "default"
 }
 
+# Switch to greeter
+bindsym $mod+Shift+u exec dm-tool switch-to-greeter
+
 # Marks
 bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
@@ -238,19 +241,23 @@ bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
 ### custom startup commands
 #exec compton -f
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png # set background
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg # set background
 exec_always –-no-startup-id setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle" # set keyboard layouts - NOT WORKING!!!
 
 ### common startup applications
 exec --no-startup-id /usr/bin/dropbox start
-exec skype
+exec skypeforlinux
 
 ### Assignments
 assign [class="google-chrome"] $ws1
+assign [class="chromium-browser"] $ws1
+assign [class="gvim"] $ws2
 assign [class="VirtualBox"] $ws5
 assign [class="Skype"] $ws6
+assign [class="skypeforlinux"] $ws6
 assign [class="Firefox"] $ws9
 
 # VLC floating over all workspaces
 for_window [class="vlc"] sticky enable
 for_window [class="Skype"] sticky enable
+for_window [class="skypeforlinux"] sticky enable
