@@ -85,8 +85,10 @@ imap <F8> <Esc> :bn<CR>
 " do not attempt to apply F7 and F8 when in NERDTree
 autocmd FileType nerdtree noremap <buffer> <F7> <nop>
 autocmd FileType nerdtree noremap <buffer> <F8> <nop>
-" use `S` to rename current higlight globally
-nmap <expr>  S  ':%s/' . @/ . '//g<LEFT><LEFT>'
+" use `Shift-F6` to rename current higlight globally
+nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
+" temp macros: start with qq, stop with q, repeat with Q
+nnoremap Q @q
 
 
 "
@@ -163,8 +165,8 @@ Plugin 'derekwyatt/vim-scala'
 " Plugin 'pangloss/vim-javascript'
 
 " JSX
-" Plugin 'mxw/vim-jsx'
-" let g:jsx_ext_required = 0
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
 
 " Vim Slime
 Plugin 'jpalardy/vim-slime'
