@@ -104,6 +104,7 @@ Plugin 'VundleVim/Vundle.vim'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeWinPos = "right" " NERDTree on the right side
+let g:NERDTreeChDirMode = 2 " Vim's CWD follows NERDTree's root
 map <C-e> :NERDTreeToggle<CR>  " Ctrl-e toggles NERDTree
 " open NERDTree if vim called with no arguments
 au StdinReadPre * let s:std_in=1
@@ -113,9 +114,6 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 
 " NERDCommenter
 " Plugin 'scrooloose/nerdcommenter'
-
-" Fugitive
-" Plugin 'tpope/vim-fugitive'
 
 " AirLine
 Plugin 'bling/vim-airline'
@@ -129,6 +127,7 @@ let g:airline_powerline_fonts = 1
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
+set wildignore+=*/build/*,*.class,*.pyc
 
 " Solarized
 Plugin 'altercation/vim-colors-solarized'
@@ -178,12 +177,19 @@ Plugin 'tpope/vim-surround'
 " Fugitive
 Plugin 'tpope/vim-fugitive'
 
+" gitgutter
+Plugin 'airblade/vim-gitgutter'
+
 " Vim Wiki
 Plugin 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/Dropbox/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
 
-" YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
+" NeoComplete - https://github.com/Shougo/neocomplete.vim
+Plugin 'Shougo/neocomplete.vim'
+let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
+let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
+let g:neocomplete#enable_smart_case = 1 " Use smartcase.
+let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
 
 " ghc-mod
 " Plugin 'eagletmt/ghcmod-vim'
@@ -226,6 +232,12 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 Plugin 'jlanzarotta/bufexplorer'
 map <F3> :BufExplorer<CR>
 imap <F3> <Esc> :BufExplorer<CR>
+
+" EditorConfig
+Plugin 'editorconfig/editorconfig-vim'
+
+" Vim Multiple Cursors
+Plugin 'terryma/vim-multiple-cursors'
 
 " Load local plugins if any
 silent! so ~/.vimlocalplugins
