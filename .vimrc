@@ -43,6 +43,9 @@ set backupdir=~/.vimbackup
 set directory=~/.vimswap
 " .. ctags
 set tags=./tags;$HOME   " search tags correctly in local dir and up to home
+" .. don't show ~ after end of buffer
+autocmd VimEnter * :highlight NonText ctermfg=black guifg=bg
+" highlight EndOfBuffer ctermfg=bg ctermbg=bg " use this in Vim 8
 
 
 "
@@ -55,7 +58,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 "
 " File associations
 "
-au BufNewFile,BufRead *.gradle setf groovy
+autocmd BufNewFile,BufRead *.gradle setf groovy
 
 
 "
@@ -161,7 +164,7 @@ hi link EasyMotionShade Comment
 Plugin 'derekwyatt/vim-scala'
 
 " Javascript
-" Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 
 " JSX
 Plugin 'mxw/vim-jsx'
