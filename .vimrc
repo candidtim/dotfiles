@@ -65,7 +65,8 @@ autocmd BufNewFile,BufRead *.gradle setf groovy
 " Key mappings
 "
 " remove search highlight with Space
-nnoremap <silent> <Space> :nohlsearch<Bar>:execute 'sign unplace * buffer=' . bufnr('')<Bar>:echo<CR>
+nnoremap <silent> <Space> :nohlsearch<CR>
+nnoremap <silent> <Leader> <Space> :sign unplace *<CR>
 " remap F1 to Esc (F1 hit accidentally causes Help open in GUI)
 map <F1> <Esc>
 imap <F1> <Esc>
@@ -130,6 +131,10 @@ let g:airline_powerline_fonts = 1
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|gradle)$',
+"   \ 'file': '\v\.(class|pyc)$',
+"   \ }
 set wildignore+=*/build/*,*.class,*.pyc
 
 " Solarized
