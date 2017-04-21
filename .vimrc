@@ -12,7 +12,7 @@ set printencoding=utf-8 " utf-8 everywhere by default
 set title               " set title in terminal emulator
 set scrolloff=3         " make some context visible
 set mouse=a             " enable mouse
-set nowrap              " don't wrap long lines
+set wrap                " don't wrap long lines
 set showmatch           " show matching brackets
 set matchtime=5         " showmatch briefly
 set timeoutlen=250      " Esc faster
@@ -46,7 +46,11 @@ set tags=./tags;$HOME   " search tags correctly in local dir and up to home
 " .. don't show ~ after end of buffer
 autocmd VimEnter * :highlight NonText ctermfg=black guifg=bg
 " highlight EndOfBuffer ctermfg=bg ctermbg=bg " use this in Vim 8
-
+" .. save undo-s longer
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
 
 "
 " Behaviour
@@ -54,6 +58,7 @@ autocmd VimEnter * :highlight NonText ctermfg=black guifg=bg
 " .. remove trailing whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
+"
 
 "
 " File associations
@@ -64,9 +69,16 @@ autocmd BufNewFile,BufRead *.gradle setf groovy
 "
 " Key mappings
 "
+" menu with ;
+nnoremap ; :
 " remove search highlight with Space
 nnoremap <silent> <Space> :nohlsearch<CR>
 nnoremap <silent> <Leader> <Space> :sign unplace *<CR>
+" up and down on wrapped lines
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 " remap F1 to Esc (F1 hit accidentally causes Help open in GUI)
 map <F1> <Esc>
 imap <F1> <Esc>
@@ -93,6 +105,9 @@ autocmd FileType nerdtree noremap <buffer> <F8> <nop>
 nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
 " temp macros: start with qq, stop with q, repeat with Q
 nnoremap Q @q
+" make 0 jump between ^ and 0
+noremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+
 
 
 "
@@ -120,12 +135,15 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 " Plugin 'scrooloose/nerdcommenter'
 
 " AirLine
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 set laststatus=2
 set noshowmode
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
+
+
 
 " Ctrl-P  TODO: replace with ???
 Plugin 'kien/ctrlp.vim'
@@ -137,7 +155,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "   \ }
 set wildignore+=*/build/*,*.class,*.pyc
 
-" Solarized
+" Solarized Theme (for vim in terminal)
 Plugin 'altercation/vim-colors-solarized'
 set background=light
 set t_Co=16
@@ -145,6 +163,9 @@ let g:solarized_termtrans = 1
 " cannot activate the colorscheme here becuase bundle is not yet available
 " https://github.com/VundleVim/Vundle.vim/issues/119
 " activated after Vundle.end
+
+" Codeschool Theme (for gvim)
+Plugin 'antlypls/vim-colors-codeschool'
 
 " Syntastic
 Plugin 'scrooloose/syntastic'
@@ -231,7 +252,7 @@ function! g:UltiSnips_Complete()
     endif
     return ""
 endfunction
-" YCM sets its completion after Vim starts, this is to override it afterwards
+" YCM and neocomplete sets its completion after Vim starts, this is to override it afterwards
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 " this maps Enter key to <C-y> to chose the current highlight and close the selection list
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -256,6 +277,7 @@ filetype plugin indent on
 
 " Activate solarized colortheme
 colorscheme solarized
+let g:airline_theme='solarized'
 
 " Finally, allow local customizations, if any
 silent! so ~/.vimlocal
