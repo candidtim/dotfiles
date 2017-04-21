@@ -155,7 +155,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 "   \ 'dir':  '\v[\/]\.(git|gradle)$',
 "   \ 'file': '\v\.(class|pyc)$',
 "   \ }
-set wildignore+=*/build/*,*.class,*.pyc
+set wildignore+=*/node_modules/*,*/build/*,*.class,*.pyc
 
 " Solarized Theme (for vim in terminal)
 Plugin 'altercation/vim-colors-solarized'
