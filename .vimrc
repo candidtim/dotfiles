@@ -95,6 +95,8 @@ comm! W exec 'w !sudo tee % > /dev/null' | e!
 " manage buffers: F6 to close, F7 and F8 for previous and next
 map <F6> :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
+map <C-PageUp> :bp<CR>
+map <C-PageDown> :bn<CR>
 map <F8> :bn<CR>
 imap <F7> <Esc> :bp<CR>
 imap <F8> <Esc> :bn<CR>
@@ -282,3 +284,4 @@ let g:airline_theme='solarized'
 " Finally, allow local customizations, if any
 silent! so ~/.vimlocal
 silent! so .vimlocal
+
