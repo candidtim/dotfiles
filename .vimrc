@@ -58,7 +58,6 @@ set undoreload=10000
 " .. remove trailing whitespaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-"
 
 "
 " File associations
@@ -267,8 +266,9 @@ imap <F3> <Esc> :BufExplorer<CR>
 " EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
 
-" Vim Multiple Cursors
-Plugin 'terryma/vim-multiple-cursors'
+" Auto Pairs
+Plugin 'jiangmiao/auto-pairs'
+let g:AutoPairsFlyMode = 1
 
 " Load local plugins if any
 silent! so ~/.vimlocalplugins
@@ -284,4 +284,3 @@ let g:airline_theme='solarized'
 " Finally, allow local customizations, if any
 silent! so ~/.vimlocal
 silent! so .vimlocal
-
