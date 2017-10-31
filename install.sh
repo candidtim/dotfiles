@@ -30,6 +30,10 @@ cp ~/projects/dotfiles/.oh-my-zsh/themes/candidtim.zsh-theme ~/.oh-my-zsh/themes
 echo "source ${HOME}/.allshrc" >> ~/.bashrc
 touch ~/.shlocal
 
+# fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # vim
 # .. create vim directories
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vimswap ~/.vimbackup
