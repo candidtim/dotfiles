@@ -81,6 +81,9 @@ map <F1> <Esc>
 imap <F1> <Esc>
 " F2 to generate tags
 map <F2> :!ctags -R .<CR>
+" F3 to search buffers
+map <F3> :Buffers<CR>
+imap <F3> <Esc> :Buffers<CR>
 " F9 to search usages of the word under cursor with Ack
 map <F9> yiw:Ack! <C-R>"<CR>
 " F10 to find current file in NERDTree
@@ -208,11 +211,6 @@ let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
 let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
 let g:neocomplete#enable_smart_case = 1 " Use smartcase.
 let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
-
-" BufExplorer
-Plugin 'jlanzarotta/bufexplorer'
-map <F3> :BufExplorer<CR>
-imap <F3> <Esc> :BufExplorer<CR>
 
 " EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
