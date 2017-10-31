@@ -85,7 +85,7 @@ map <F2> :!ctags -R .<CR>
 map <F3> :Buffers<CR>
 imap <F3> <Esc> :Buffers<CR>
 " F9 to search usages of the word under cursor with Ack
-map <F9> yiw:Ack! <C-R>"<CR>
+map <F9> :Ack! "\b<cword>\b" <CR>
 " F10 to find current file in NERDTree
 map <F10> :NERDTreeFind<CR>
 " F11 to go "fullscreen" - open current window in new tab (close with Ctrl-W c)
@@ -94,10 +94,13 @@ map <F11> :tab sp<CR>
 map <F12> :Tags<CR>
 " W to write with sudo
 comm! W exec 'w !sudo tee % > /dev/null' | e!
-" manage buffers: F6 to close, F7 and F8 for previous and next
+" manage buffers: F6 or /b to close, F7 or [b and F8 or ]b for previous and next
 map <F6> :bp <BAR> bd #<CR>
+map /b   :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
+map [b   :bp<CR>
 map <F8> :bn<CR>
+map ]b   :bn<CR>
 " do not attempt to apply F7 and F8 when in NERDTree
 autocmd FileType nerdtree noremap <buffer> <F7> <nop>
 autocmd FileType nerdtree noremap <buffer> <F8> <nop>
@@ -107,6 +110,9 @@ nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
 nnoremap Q @q
 " make 0 jump between ^ and 0
 noremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+" cnext / cprev
+map ]q :cnext<CR>
+map [q :cprev<CR>
 
 "
 " Plugins
