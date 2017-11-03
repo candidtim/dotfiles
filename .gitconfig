@@ -37,3 +37,7 @@
   prompt = false
 [include]
   path = .gitconfiglocal
+[status]
+	showUntrackedFiles = all
+[init]
+	templatedir = ~/.git_template
