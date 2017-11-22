@@ -96,7 +96,7 @@ map <F12> :Tags<CR>
 comm! W exec 'w !sudo tee % > /dev/null' | e!
 " manage buffers: F6 or /b to close, F7 or [b and F8 or ]b for previous and next
 map <F6> :bp <BAR> bd #<CR>
-map /b   :bp <BAR> bd #<CR>
+map \b   :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
 map [b   :bp<CR>
 map <F8> :bn<CR>

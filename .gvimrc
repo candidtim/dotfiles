@@ -8,3 +8,5 @@ set guioptions-=L  "remove left-hand scroll bar
 
 colorscheme codeschool
 let g:airline_theme='bubblegum'
+
+set lines=999 columns=999 " start maximized
