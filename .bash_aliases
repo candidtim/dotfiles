@@ -9,7 +9,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # ls
-alias ls='ls -hF --color=auto'
+alias ls='gls -hF --color=auto'
 alias ll='ls -Al'
 alias l=ls
 
