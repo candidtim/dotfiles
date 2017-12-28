@@ -35,6 +35,9 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab           " use TAB to insert spaces
+" .. disable bell
+set visualbell
+set t_vb=
 " .. show 120 chars limut column
 set colorcolumn=120
 highlight ColorColumn ctermbg=grey guibg=grey
