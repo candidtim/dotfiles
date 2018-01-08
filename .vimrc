@@ -229,6 +229,9 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax key
 " EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
 
+" Terminus
+Plugin 'wincent/terminus'
+
 " Load local plugins if any
 silent! so ~/.vimlocalplugins
 silent! so .vimlocalplugins
