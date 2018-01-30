@@ -35,6 +35,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab           " use TAB to insert spaces
+" .. sane line joins
+set formatoptions+=j
 " .. disable bell
 set visualbell
 set t_vb=
@@ -99,7 +101,7 @@ map <F12> :Tags<CR>
 comm! W exec 'w !sudo tee % > /dev/null' | e!
 " manage buffers: F6 or /b to close, F7 or [b and F8 or ]b for previous and next
 map <F6> :bp <BAR> bd #<CR>
-map \b   :bp <BAR> bd #<CR>
+map /b   :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
 map [b   :bp<CR>
 map <F8> :bn<CR>
@@ -150,7 +152,7 @@ let g:airline_powerline_fonts = 1
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 set rtp+=~/.fzf
-nmap <c-p> :Files<CR>
+nmap <c-p> :GFiles<CR>
 set wildignore+=*/node_modules/*,*/build/*,*/.git/*,*.class,*.pyc
 
 " Solarized Theme (for vim in terminal)
@@ -209,6 +211,9 @@ Plugin 'tpope/vim-fugitive'
 
 " gitgutter
 Plugin 'airblade/vim-gitgutter'
+nnoremap <C-n> :GitGutterNextHunk<CR>
+nnoremap <M-n> :GitGutterPrevHunk<CR>
+nnoremap <C-u> :GitGutterUndoHunk<CR>
 
 " Vim Wiki
 Plugin 'vimwiki/vimwiki'
@@ -223,6 +228,9 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax key
 
 " EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
+
+" Terminus
+Plugin 'wincent/terminus'
 
 " Load local plugins if any
 silent! so ~/.vimlocalplugins
