@@ -21,6 +21,7 @@ cp ~/src/dotfiles/.bash_functions ~
 cp ~/src/dotfiles/.ctags ~
 cp ~/src/dotfiles/.gitconfig ~
 cp ~/src/dotfiles/.gitignore ~
+cp -R ~/src/dotfiles/.git_templates/* ~
 cp ~/src/dotfiles/.vimrc ~
 cp ~/src/dotfiles/.gvimrc ~
 cp ~/src/dotfiles/.tmux.conf ~
