@@ -24,11 +24,15 @@ cp ~/src/dotfiles/.gitignore ~
 cp -R ~/src/dotfiles/.git_templates/* ~
 cp ~/src/dotfiles/.vimrc ~
 cp ~/src/dotfiles/.gvimrc ~
+cp ~/src/dotfiles/.ideavimrc ~
 cp ~/src/dotfiles/.tmux.conf ~
+cp ~/src/dotfiles/.tmux.colours.conf ~
 cp ~/src/dotfiles/.tmux.project ~
 cp ~/src/dotfiles/.vimabbr ~
 cp ~/src/dotfiles/.zshrc ~
 cp ~/src/dotfiles/.allshrc ~
+cp ~/src/dotfiles/.xinitrc ~
+cp ~/src/dotfiles/.Xmodmap ~
 cp ~/src/dotfiles/.oh-my-zsh/themes/candidtim.zsh-theme ~/.oh-my-zsh/themes
 echo "source ${HOME}/.allshrc" >> ~/.bashrc
 touch ~/.shlocal
@@ -40,6 +44,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # vim
 # .. create vim directories
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vimswap ~/.vimbackup
+# .. copy snippets
+cp -R ~/src/dotfiles/.vim/* ~/.vim
 # .. install Vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # .. install plugins
