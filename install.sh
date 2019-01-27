@@ -23,7 +23,6 @@ cp ~/projects/dotfiles/.vimrc ~
 cp ~/projects/dotfiles/.tmux.conf ~
 cp ~/projects/dotfiles/.tmux.project ~
 cp ~/projects/dotfiles/.gvimrc ~
-cp ~/projects/dotfiles/.vimabbr ~
 cp ~/projects/dotfiles/.zshrc ~
 cp ~/projects/dotfiles/.allshrc ~
 cp ~/projects/dotfiles/.oh-my-zsh/themes/candidtim.zsh-theme ~/.oh-my-zsh/themes
@@ -49,8 +48,8 @@ git clone https://github.com/Lokaltog/powerline-fonts.git ~/.fonts
 fc-cache -vf ~/.fonts/UbuntuMono
 
 # tmux
-mkdir -p ~/.tmux/bundle
-git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/bundle/tmux-resurrect
+mkdir -p ~/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # i3wm
 sudo apt-get -y install i3 i3blocks xbacklight arandr lxappearance rofi fonts-font-awesome

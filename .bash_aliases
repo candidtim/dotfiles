@@ -11,11 +11,11 @@ alias fgrep='fgrep --color=auto'
 # ls
 alias ls='ls -hF --color=auto'
 alias ll='ls -Al'
+alias lt='ls -rtl'
 alias l=ls
 
 # common find operations
 alias lf='find . -name'
-
 
 # NeoVim
 alias nv=nvim
@@ -41,6 +41,7 @@ alias ta='tmux attach -t'
 alias py=python
 alias py3=python3
 alias ve=virtualenv
+alias activate='source venv/bin/activate'
 
 # gradle
 alias gr=gradle
@@ -53,6 +54,7 @@ alias vg=vagrant
 
 # docker
 alias dk=docker
+alias dc=docker-compose
 alias dkillall="docker ps -a && docker ps -a -q | xargs docker rm -f && docker ps -a"
 
 # beep
@@ -61,4 +63,5 @@ alias beep='paplay $BEEP'
 alias alert='notify-send "$([ $? = 0 ] && echo Done || echo ERROR)" && beep'
 
 # nautilus
+alias nautilus='nautilus --no-desktop'
 alias nau=nautilus

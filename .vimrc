@@ -3,6 +3,7 @@
 "
 let mapleader = ","     " remap leader to ,
 syntax enable
+let python_highlight_all=1
 filetype plugin indent on
 set nocompatible        " don't care about Vi compatibility
 set cursorline          " highlight the line the cursor is on
@@ -38,10 +39,9 @@ set expandtab           " use TAB to insert spaces
 " .. sane line joins
 set formatoptions+=j
 " .. disable bell
-set visualbell
 set t_vb=
-" .. show 120 chars limut column
-set colorcolumn=120
+" .. show 80 chars limut column
+set colorcolumn=80
 highlight ColorColumn ctermbg=grey guibg=grey
 " .. backup
 set backupdir=~/.vimbackup
@@ -56,12 +56,16 @@ set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
+" .. nicer splits
+set fillchars=vert:\│
 
 "
 " Behaviour
 "
-" .. remove trailing whitespaces on save
-autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
+autocmd BufLeave,FocusLost * silent! wall " autosave when switching buffers
+autocmd BufWritePost *.js AsyncRun -post=checktime npm run prettier -- --write %
+autocmd BufWritePost *.py AsyncRun -post=checktime yapf --style='{ALLOW_SPLIT_BEFORE_DICT_VALUE=false}' --in-place %
 
 "
 " File associations
@@ -81,6 +85,8 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+" Ack search with <Leader>a
+nnoremap <Leader>a :Ack!<Space>
 " remap F1 to Esc (F1 hit accidentally causes Help open in GUI)
 map <F1> <Esc>
 imap <F1> <Esc>
@@ -104,8 +110,11 @@ map <F6> :bp <BAR> bd #<CR>
 map /b   :bp <BAR> bd #<CR>
 map <F7> :bp<CR>
 map [b   :bp<CR>
+map H    :bp<CR>
 map <F8> :bn<CR>
 map ]b   :bn<CR>
+map L    :bn<CR>
+map <bs> <C-^>
 " do not attempt to apply F7 and F8 when in NERDTree
 autocmd FileType nerdtree noremap <buffer> <F7> <nop>
 autocmd FileType nerdtree noremap <buffer> <F8> <nop>
@@ -115,9 +124,14 @@ nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
 nnoremap Q @q
 " make 0 jump between ^ and 0
 noremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
-" cnext / cprev
-map ]q :cnext<CR>
-map [q :cprev<CR>
+" lnext / lprev
+map ]q :lnext<CR>
+map [q :lprev<CR>
+" search for TODOs and FIXMEs
+map <F4> :Ack "TODO\|FIXME"<CR>
+" activate spell check (EN)
+nnoremap <Leader>s :set spell spelllang=en_us<CR>
+nnoremap <Leader>S :set nospell<CR>
 
 "
 " Plugins
@@ -140,6 +154,9 @@ au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " close vim if all files closed
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" NERD Commenter
+Plugin 'scrooloose/nerdcommenter'
+
 " AirLine
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -153,7 +170,7 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 set rtp+=~/.fzf
 nmap <c-p> :GFiles<CR>
-set wildignore+=*/node_modules/*,*/build/*,*/.git/*,*.class,*.pyc
+set wildignore+=*/node_modules/*,*/build/*,*/.git/*,*/*.egg-info/*,*/dist/*,*.class,*.pyc
 
 " Solarized Theme (for vim in terminal)
 Plugin 'altercation/vim-colors-solarized'
@@ -169,13 +186,14 @@ Plugin 'antlypls/vim-colors-codeschool'
 
 Plugin 'w0rp/ale'
 let g:airline#extensions#ale#enabled = 1
-let g:ale_sign_error = '=>'
-let g:ale_sign_warning = '->'
+let g:ale_lint_on_enter = 0
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '>'
 
 " Ack (used with ag)
 Plugin 'mileszs/ack.vim'
-let g:ackprg = 'ag --nogroup --nocolor --column'
-" let g:ackprg = 'ag --vimgrep' " in new versions of ag?
+let g:ackprg = 'ag --vimgrep'
+let g:ackhighlight = 1
 
 " Easy motion
 Plugin 'easymotion/vim-easymotion'
@@ -226,11 +244,21 @@ let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
 let g:neocomplete#enable_smart_case = 1 " Use smartcase.
 let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
 
+" Supertab
+Plugin 'ervandew/supertab'
+
 " EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
 
-" Terminus
-Plugin 'wincent/terminus'
+" UltiSnips
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'epilande/vim-react-snippets'
+Plugin 'epilande/vim-es2015-snippets'
+
+" Asyncrun
+Plugin 'skywind3000/asyncrun.vim'
+let g:asyncrun_status = ''
 
 " Load local plugins if any
 silent! so ~/.vimlocalplugins
@@ -243,6 +271,6 @@ filetype plugin indent on
 colorscheme solarized
 let g:airline_theme='solarized'
 
-" Finally, allow local customizations, if any
+" Local customizations, if any
 silent! so ~/.vimlocal
 silent! so .vimlocal
