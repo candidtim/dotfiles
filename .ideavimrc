@@ -1,3 +1,6 @@
+" leader
+let mapleader = ","
+
 " search options
 set hlsearch            " highlight search results
 set ignorecase          " case-insensitive search, see next one
@@ -21,9 +24,14 @@ map ; :
 map <F3>  :action RecentFiles<CR>
 map <F9>  :action FindUsages<CR>
 map <F10> :action SelectInProjectView<CR>
-map /b    :action CloseActiveTab<CR>
+map <F6>  :action CloseContent<CR>
+map /b    :action CloseContent<CR>
+map X     :action CloseContent<CR>
 map [b    :action PreviousTab<CR>
+map H     :action PreviousTab<CR>
 map ]b    :action NextTab<CR>
+map L     :action NextTab<CR>
 map g;    :action JumpToLastChange<CR>
 map =     :action ReformatCode<CR>
+map <leader><leader>w :action AceAction<CR>
 map Q @q

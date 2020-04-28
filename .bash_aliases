@@ -65,3 +65,7 @@ alias alert='notify-send "$([ $? = 0 ] && echo Done || echo ERROR)" && beep'
 # nautilus
 alias nautilus='nautilus --no-desktop'
 alias nau=nautilus
+
+# xclip to copy to clipboard by default
+alias clip='xclip -i -selection clipboard'
+

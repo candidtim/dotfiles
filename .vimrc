@@ -65,7 +65,7 @@ set fillchars=vert:\│
 autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
 autocmd BufLeave,FocusLost * silent! wall " autosave when switching buffers
 autocmd BufWritePost *.js AsyncRun -post=checktime npm run prettier -- --write %
-autocmd BufWritePost *.py AsyncRun -post=checktime yapf --style='{ALLOW_SPLIT_BEFORE_DICT_VALUE=false}' --in-place %
+autocmd BufWritePost *.py AsyncRun -post=checktime black %
 
 "
 " File associations
@@ -270,6 +270,12 @@ filetype plugin indent on
 " Activate solarized colortheme
 colorscheme solarized
 let g:airline_theme='solarized'
+
+" Customizations for Oni
+if exists("g:gui_oni")
+  echom "hi Oni"
+  set laststatus=0
+endif
 
 " Local customizations, if any
 silent! so ~/.vimlocal
