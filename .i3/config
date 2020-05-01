@@ -191,12 +191,12 @@ bindsym --release $mod+Shift+XF86MonBrightnessDown exec xbacklight -set 1
 bindsym $mod+Mod1+l exec --no-startup-id ~/bin/lock
 
 # suspend with Win+Shift+S
-bindsym $mod+Mod1+s exec --no-startup-id ~/bin/suspend.sh
+bindsym $mod+Mod1+s exec --no-startup-id ~/bin/suspend
 
 # setup keyboard layouts: EN,RU
 #bindsym $mod+Shift+l exec –-no-startup-id setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle"
 # setup keyboard layouts: EN,FR
-bindsym $mod+Shift+o exec –-no-startup-id ~/bin/setup-keyboard-layouts.sh
+bindsym $mod+Shift+o exec –-no-startup-id ~/bin/setup-kbd
 
 # move workspaces to screens right/left
 bindsym $mod+Shift+Left move workspace to output left

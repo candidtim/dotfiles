@@ -1,0 +1,4 @@
+#!/bin/bash
+
+gsettings set org.gnome.desktop.notifications show-banners false
+# gsettings set org.gnome.desktop.notifications enable false
