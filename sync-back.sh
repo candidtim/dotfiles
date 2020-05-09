@@ -22,4 +22,6 @@ cp -f ~/.doom.d/* ./.doom.d/
 cp -f ~/.i3/config ./.i3/
 cp -f ~/.i3/i3blocks.conf ./.i3/
 
+sed -i '/user/,+2d' .gitconfig
+
 popd
