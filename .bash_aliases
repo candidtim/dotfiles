@@ -17,8 +17,8 @@ alias l=ls
 # common find operations
 alias lf='find . -name'
 
-# NeoVim
-alias nv=nvim
+# Vim
+alias v=vim
 
 # git
 alias g=git
