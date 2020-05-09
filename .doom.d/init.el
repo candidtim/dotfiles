@@ -47,7 +47,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
@@ -75,14 +75,14 @@
        ;;direnv
        docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
-       ein               ; tame Jupyter notebooks with emacs
+       ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        flycheck          ; tasing you for every semicolon you forget
        flyspell          ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
-       ;;lsp
+       lsp
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
@@ -98,7 +98,7 @@
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
        ;;cc                ; C/C++/Obj-C madness
-       clojure           ; java with a lisp
+       ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -112,7 +112,7 @@
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;go                ; the hipster dialect
-       ;;(haskell +intero) ; a language that's lazier than I am
+       (haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
@@ -127,17 +127,17 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org              ; organize your plain life in plain text
-        +dragndrop       ; drag & drop files/images into org buffers
-        ;;+hugo            ; use Emacs for hugo blogging
-        +ipython         ; ipython/jupyter support for babel
-        +pandoc          ; export-with-pandoc support
-        ;;+pomodoro        ; be fruitful with the tomato technique
-        +present)        ; using org-mode for presentations
+       ;;(org              ; organize your plain life in plain text
+       ;; +dragndrop       ; drag & drop files/images into org buffers
+       ;; ;;+hugo            ; use Emacs for hugo blogging
+       ;; +ipython         ; ipython/jupyter support for babel
+       ;; +pandoc          ; export-with-pandoc support
+       ;; ;;+pomodoro        ; be fruitful with the tomato technique
+       ;; +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
-       ;;purescript        ; javascript, but functional
+       purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
