@@ -1,4 +1,4 @@
-set background=light
+set background=dark
 
 set gfn=Ubuntu\ Mono\ derivative\ Powerline\ 13
 set guioptions-=m  "remove menu bar

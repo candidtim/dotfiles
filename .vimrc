@@ -1,7 +1,9 @@
-"
+" TODO:
+" - integrate movements with tmux
+
 " General config
 "
-let mapleader = ","     " remap leader to ,
+let mapleader = " "     " remap leader to Spacebar
 syntax enable
 let python_highlight_all=1
 filetype plugin indent on
@@ -9,7 +11,7 @@ set nocompatible        " don't care about Vi compatibility
 set cursorline          " highlight the line the cursor is on
 set encoding=utf-8      " utf-8 everywhere by default
 set printencoding=utf-8 " utf-8 everywhere by default
-" set hidden            " why would I do this?
+set hidden
 set title               " set title in terminal emulator
 set scrolloff=3         " make some context visible
 set mouse=a             " enable mouse
@@ -17,9 +19,10 @@ set wrap                " don't wrap long lines
 set showmatch           " show matching brackets
 set matchtime=5         " showmatch briefly
 set timeoutlen=250      " Esc faster
+set notimeout           " Leader doesn't time out
 set autowrite           " autowrite files on change buffer, etc.
 set autoread            " autoread files when changed outside
-set clipboard^=unnamed,unnamedplus " copy to clipboard
+set clipboard^=unnamed,unnamedplus " copy to the system clipboard
 set backspace=indent,eol,start     " backspace by indent, over lines, start of insert
 " .. line numbers
 set number              " show line numbers
@@ -36,11 +39,10 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab           " use TAB to insert spaces
-" .. sane line joins
-set formatoptions+=j
+set formatoptions+=j    " sane line joins
 " .. disable bell
 set t_vb=
-" .. show 80 chars limut column
+" .. show 80 chars limit column
 set colorcolumn=80
 highlight ColorColumn ctermbg=grey guibg=grey
 " .. backup
@@ -50,88 +52,80 @@ set directory=~/.vimswap
 set tags=./tags;$HOME   " search tags correctly in local dir and up to home
 " .. don't show ~ after end of buffer
 autocmd VimEnter * :highlight NonText ctermfg=black guifg=bg
-" highlight EndOfBuffer ctermfg=bg ctermbg=bg " use this in Vim 8
 " .. save undo-s longer
 set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
-" .. nicer splits
+" .. nicer splits in the terminal Vim
 set fillchars=vert:\│
 
 "
-" Behaviour
+" Autosave
 "
 autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
 autocmd BufLeave,FocusLost * silent! wall " autosave when switching buffers
-autocmd BufWritePost *.js AsyncRun -post=checktime npm run prettier -- --write %
-autocmd BufWritePost *.py AsyncRun -post=checktime black %
 
 "
-" File associations
+" Code formatting
 "
-autocmd BufNewFile,BufRead *.gradle setf groovy
+autocmd BufWritePost *.js !npm run prettier -- --write %
+autocmd BufWritePost *.py !black %
+
+"
+" Custom commands
+"
+comm! W exec 'w !sudo tee % > /dev/null' | e!  " W to write with sudo
 
 "
 " Key mappings
 "
+
 " menu with ;
 nnoremap ; :
-" remove search highlight with Space
-nnoremap <silent> <Space> :nohlsearch<CR>
-nnoremap <silent> <Leader> <Space> :sign unplace *<CR>
+
 " up and down on wrapped lines
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-" Ack search with <Leader>a
-nnoremap <Leader>a :Ack!<Space>
-" remap F1 to Esc (F1 hit accidentally causes Help open in GUI)
-map <F1> <Esc>
-imap <F1> <Esc>
-" F2 to generate tags
-map <F2> :!ctags -R .<CR>
-" F3 to search buffers
-map <F3> :Buffers<CR>
-imap <F3> <Esc> :Buffers<CR>
-" F9 to search usages of the word under cursor with Ack
-map <F9> :Ack! "\b<cword>\b" <CR>
-" F10 to find current file in NERDTree
-map <F10> :NERDTreeFind<CR>
-" F11 to go "fullscreen" - open current window in new tab (close with Ctrl-W c)
-map <F11> :tab sp<CR>
-" F12 to lookup ALL tags
-map <F12> :Tags<CR>
-" W to write with sudo
-comm! W exec 'w !sudo tee % > /dev/null' | e!
-" manage buffers: F6 or /b to close, F7 or [b and F8 or ]b for previous and next
-map <F6> :bp <BAR> bd #<CR>
-map /b   :bp <BAR> bd #<CR>
-map <F7> :bp<CR>
-map [b   :bp<CR>
-map H    :bp<CR>
-map <F8> :bn<CR>
-map ]b   :bn<CR>
-map L    :bn<CR>
-map <bs> <C-^>
-" do not attempt to apply F7 and F8 when in NERDTree
-autocmd FileType nerdtree noremap <buffer> <F7> <nop>
-autocmd FileType nerdtree noremap <buffer> <F8> <nop>
+
+" save, open, tags, switch buffers, etc.:
+nnoremap <Leader>fs :w<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fp :GFiles<CR>
+nnoremap <Leader>fh :History<CR>
+nnoremap <Leader>bb :Buffers<CR>
+nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>tt :Tags<CR>
+nnoremap <Leader>tg :!ctags -R .<CR>
+nnoremap <Leader>q :quit<CR>
+" remove search highlight:
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
+
+" navigate visible buffers:
+nnoremap H :bp<CR>
+nnoremap L :bn<CR>
+
 " use `Shift-F6` to rename current higlight globally
-nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
+nnoremap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
+
 " temp macros: start with qq, stop with q, repeat with Q
 nnoremap Q @q
+
 " make 0 jump between ^ and 0
 noremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+
 " lnext / lprev
 map ]q :lnext<CR>
 map [q :lprev<CR>
-" search for TODOs and FIXMEs
-map <F4> :Ack "TODO\|FIXME"<CR>
-" activate spell check (EN)
-nnoremap <Leader>s :set spell spelllang=en_us<CR>
-nnoremap <Leader>S :set nospell<CR>
+
+" spell check
+nnoremap <Leader>se :set spell spelllang=en_us<CR>
+nnoremap <Leader>su :set spell spelllang=en_us<CR>
+nnoremap <Leader>sf :set spell spelllang=fr_fr<CR>
+nnoremap <Leader>so :set nospell<CR>
+
 
 "
 " Plugins
@@ -146,16 +140,13 @@ Plugin 'VundleVim/Vundle.vim'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeWinPos = "right" " NERDTree on the right side
-let g:NERDTreeChDirMode = 2 " Vim's CWD follows NERDTree's root
-map <C-e> :NERDTreeToggle<CR>  " Ctrl-e toggles NERDTree
-" open NERDTree if vim called with no arguments
-au StdinReadPre * let s:std_in=1
-au VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" close vim if all files closed
+" close vim if all buffers are closed, but the NERDTree
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" NERD Commenter
-Plugin 'scrooloose/nerdcommenter'
+" .. mappings:
+" .. Ctrl-e toggles NERDTree
+map <C-e> :NERDTreeToggle<CR>
+" .. F10 to find current file in NERDTree
+map <F10> :NERDTreeFind<CR>
 
 " AirLine
 Plugin 'vim-airline/vim-airline'
@@ -169,7 +160,6 @@ let g:airline_powerline_fonts = 1
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 set rtp+=~/.fzf
-nmap <c-p> :GFiles<CR>
 set wildignore+=*/node_modules/*,*/build/*,*/.git/*,*/*.egg-info/*,*/dist/*,*.class,*.pyc
 
 " Solarized Theme (for vim in terminal)
@@ -194,6 +184,10 @@ let g:ale_sign_warning = '>'
 Plugin 'mileszs/ack.vim'
 let g:ackprg = 'ag --vimgrep'
 let g:ackhighlight = 1
+" .. mappings:
+map <F4> :Ack "TODO\|FIXME"<CR>
+nnoremap <Leader>a :Ack!<Space>
+map <F7> :Ack! "\b<cword>\b" <CR>
 
 " Easy motion
 Plugin 'easymotion/vim-easymotion'
@@ -203,29 +197,12 @@ hi link EasyMotionShade Comment
 " Polyglot (languages support)
 Plugin 'sheerun/vim-polyglot'
 
-" Clojure, still requires specific plugins
-" Plugin 'tpope/vim-fireplace'
-" Plugin 'venantius/vim-eastwood'
-" Plugin 'venantius/vim-cljfmt'
-
-" Haskell, but Polyglot, ALE and Slime do quite well already
-" Plugin 'eagletmt/ghcmod-vim'
-" au FileType haskell nnoremap <buffer> <F3> :HdevtoolsType<CR>
-" au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
-" map <silent> tw :GhcModTypeInsert<CR>
-" map <silent> ts :GhcModSplitFunCase<CR>
-" map <silent> tq :GhcModType<CR>
-" map <silent> te :GhcModTypeClear<CR>
-
 " Vim Slime
 Plugin 'jpalardy/vim-slime'
 let g:slime_target = "tmux"
 
 " Vim Surround
 Plugin 'tpope/vim-surround'
-
-" Fugitive
-Plugin 'tpope/vim-fugitive'
 
 " gitgutter
 Plugin 'airblade/vim-gitgutter'
@@ -247,18 +224,11 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax key
 " Supertab
 Plugin 'ervandew/supertab'
 
-" EditorConfig
-Plugin 'editorconfig/editorconfig-vim'
+" Start screen
+Plugin 'mhinz/vim-startify'
 
-" UltiSnips
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'epilande/vim-react-snippets'
-Plugin 'epilande/vim-es2015-snippets'
-
-" Asyncrun
-Plugin 'skywind3000/asyncrun.vim'
-let g:asyncrun_status = ''
+" Rooter changes `pwd` to the 'project root' of current open file
+Plugin 'airblade/vim-rooter'
 
 " Load local plugins if any
 silent! so ~/.vimlocalplugins
@@ -270,12 +240,6 @@ filetype plugin indent on
 " Activate solarized colortheme
 colorscheme solarized
 let g:airline_theme='solarized'
-
-" Customizations for Oni
-if exists("g:gui_oni")
-  echom "hi Oni"
-  set laststatus=0
-endif
 
 " Local customizations, if any
 silent! so ~/.vimlocal
