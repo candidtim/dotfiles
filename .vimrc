@@ -24,6 +24,8 @@ set autowrite           " autowrite files on change buffer, etc.
 set autoread            " autoread files when changed outside
 set clipboard^=unnamed,unnamedplus " copy to the system clipboard
 set backspace=indent,eol,start     " backspace by indent, over lines, start of insert
+set wildmode=longest,list,full " zsh-like completion in ex
+set wildmenu
 " .. line numbers
 set number              " show line numbers
 set relativenumber      " or actually relative numbers on all lines except current
@@ -69,13 +71,19 @@ autocmd BufLeave,FocusLost * silent! wall " autosave when switching buffers
 "
 " Code formatting
 "
-autocmd BufWritePost *.js !npm run prettier -- --write %
-autocmd BufWritePost *.py !black %
+autocmd BufWritePost *.js AsyncRun -post=checktime npm run prettier -- --write %
+autocmd BufWritePost *.py AsyncRun -post=checktime black %
 
 "
 " Custom commands
 "
 comm! W exec 'w !sudo tee % > /dev/null' | e!  " W to write with sudo
+
+"
+" Custom $PATH
+"
+let $PATH .= '/home/$USER/bin:/home/$USER/.local/bin/'
+
 
 "
 " Key mappings
@@ -91,40 +99,41 @@ vnoremap j gj
 vnoremap k gk
 
 " save, open, tags, switch buffers, etc.:
-nnoremap <Leader>fs :w<CR>
-nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>fp :GFiles<CR>
-nnoremap <Leader>fh :History<CR>
-nnoremap <Leader>bb :Buffers<CR>
-nnoremap <Leader>bd :bd<CR>
-nnoremap <Leader>tt :Tags<CR>
-nnoremap <Leader>tg :!ctags -R .<CR>
-nnoremap <Leader>q :quit<CR>
+nmap <Leader>fs :w<CR>
+nmap <Leader>ff :Files<CR>
+nmap <Leader>fp :GFiles<CR>
+nmap <Leader>fh :History<CR>
+nmap <Leader>cd :lcd %:p:h<CR>
+nmap <Leader>bb :Buffers<CR>
+nmap <Leader>bd :bd<CR>
+nmap <Leader>tt :Tags<CR>
+nmap <Leader>tg :!ctags -R .<CR>
+nmap <Leader>q :quit<CR>
 " remove search highlight:
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
+nmap <silent> <Leader>/ :nohlsearch<CR>
 
 " navigate visible buffers:
-nnoremap H :bp<CR>
-nnoremap L :bn<CR>
+" nmap H :bp<CR>
+" nmap L :bn<CR>
 
 " use `Shift-F6` to rename current higlight globally
-nnoremap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
+nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
 
 " temp macros: start with qq, stop with q, repeat with Q
-nnoremap Q @q
+nmap Q @q
 
 " make 0 jump between ^ and 0
-noremap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+nmap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 
 " lnext / lprev
-map ]q :lnext<CR>
-map [q :lprev<CR>
+nmap ]q :lnext<CR>
+nmap [q :lprev<CR>
 
 " spell check
-nnoremap <Leader>se :set spell spelllang=en_us<CR>
-nnoremap <Leader>su :set spell spelllang=en_us<CR>
-nnoremap <Leader>sf :set spell spelllang=fr_fr<CR>
-nnoremap <Leader>so :set nospell<CR>
+nmap <Leader>se :set spell spelllang=en_us<CR>
+nmap <Leader>su :set spell spelllang=en_us<CR>
+nmap <Leader>sf :set spell spelllang=fr_fr<CR>
+nmap <Leader>so :set nospell<CR>
 
 
 "
@@ -153,8 +162,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 set laststatus=2
 set noshowmode
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
 
 Plugin 'junegunn/fzf'
@@ -186,7 +195,7 @@ let g:ackprg = 'ag --vimgrep'
 let g:ackhighlight = 1
 " .. mappings:
 map <F4> :Ack "TODO\|FIXME"<CR>
-nnoremap <Leader>a :Ack!<Space>
+nmap <Leader>a :Ack!<Space>
 map <F7> :Ack! "\b<cword>\b" <CR>
 
 " Easy motion
@@ -196,6 +205,7 @@ hi link EasyMotionShade Comment
 
 " Polyglot (languages support)
 Plugin 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['markdown']
 
 " Vim Slime
 Plugin 'jpalardy/vim-slime'
@@ -206,15 +216,11 @@ Plugin 'tpope/vim-surround'
 
 " gitgutter
 Plugin 'airblade/vim-gitgutter'
-nnoremap <C-n> :GitGutterNextHunk<CR>
-nnoremap <M-n> :GitGutterPrevHunk<CR>
-nnoremap <C-u> :GitGutterUndoHunk<CR>
+nmap <C-n> :GitGutterNextHunk<CR>
+nmap <M-n> :GitGutterPrevHunk<CR>
+nmap <C-u> :GitGutterUndoHunk<CR>
 
-" Vim Wiki
-Plugin 'vimwiki/vimwiki'
-let g:vimwiki_list = [{'path': '~/Dropbox/Notes/', 'syntax': 'markdown', 'ext': '.md'}]
-
-" NeoComplete - https://github.com/Shougo/neocomplete.vim
+" NeoComplete
 Plugin 'Shougo/neocomplete.vim'
 let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
 let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
@@ -229,6 +235,10 @@ Plugin 'mhinz/vim-startify'
 
 " Rooter changes `pwd` to the 'project root' of current open file
 Plugin 'airblade/vim-rooter'
+let g:rooter_silent_chdir = 1 " don't echo when changing the root dir
+
+" AsyncRun
+Plugin 'skywind3000/asyncrun.vim'
 
 " Load local plugins if any
 silent! so ~/.vimlocalplugins
@@ -240,6 +250,7 @@ filetype plugin indent on
 " Activate solarized colortheme
 colorscheme solarized
 let g:airline_theme='solarized'
+
 
 " Local customizations, if any
 silent! so ~/.vimlocal
