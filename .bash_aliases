@@ -29,7 +29,9 @@ alias gdf='git diff --color | diff-so-fancy | less'
 alias gdc='git diff --cached --color | diff-so-fancy | less'
 alias gdt='git difftool'
 alias gs='git stash list | cat'
-function gsa { git stash apply "stash@{$1}" }
+
+# ctags
+alias ct='ctags -R .'
 
 # tmux
 #alias tmux="TERM=screen-256color-bce tmux"
@@ -40,7 +42,6 @@ alias ta='tmux attach -t'
 # python
 alias py=python
 alias py3=python3
-alias ve=virtualenv
 alias activate='source venv/bin/activate'
 
 # gradle

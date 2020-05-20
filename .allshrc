@@ -3,10 +3,14 @@ eval `dircolors ~/.solarized/dircolors`
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_functions"
 
+export VIRTUALENVWRAPPER_PYTHON=python3
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
+export PROJECT_HOME=$HOME/src
 source /usr/local/bin/virtualenvwrapper.sh
+
+export GIT_TEMPLATE_DIR=~/src/dotfiles/.git_template
 
 if [ -f "${HOME}/.shlocal" ]; then
   source "${HOME}/.shlocal"
 fi
+

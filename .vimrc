@@ -250,8 +250,9 @@ filetype plugin indent on
 " Activate solarized colortheme
 colorscheme solarized
 let g:airline_theme='solarized'
-
+highlight CursorLineNr term=bold cterm=bold gui=bold guifg=Yellow
 
 " Local customizations, if any
 silent! so ~/.vimlocal
 silent! so .vimlocal
+

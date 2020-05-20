@@ -1,19 +1,13 @@
 #!/bin/bash
 
-# install some packages
-sudo apt-get -y install curl python-pip vim vim-gtk git zsh silversearcher-ag npm feh build-essential cmake
-sudo pip install virtualenvwrapper
-sudo npm install -g diff-so-fancy
-
 # oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
 chsh -s $(which zsh)
 
 # basic directories
-mkdir -p ~/app ~/src ~/tmp
+mkdir -p ~/app ~/src ~/tmp ~/bin
 
 # install dotfiles
-git clone https://github.com/candidtim/dotfiles.git ~/src/dotfiles
 cp ~/src/dotfiles/.allshrc ~
 cp ~/src/dotfiles/.bash_aliases ~
 cp ~/src/dotfiles/.bash_functions ~
@@ -33,6 +27,9 @@ cp ~/src/dotfiles/.oh-my-zsh/themes/candidtim.zsh-theme ~/.oh-my-zsh/themes
 echo "source ${HOME}/.allshrc" >> ~/.bashrc
 touch ~/.shlocal
 
+# copy custom bin scripts
+cp ~/src/dotfiles/bin/* ~/bin
+
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -44,9 +41,6 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vimswap ~/.vimbackup
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # .. install plugins
 vim +PluginInstall +qall
-# .. compile YCM with all lanaguages support
-cd ~/.vim/bundle/YouCompleteMe
-./install.py --all
 # .. install powerline fonts for vim-airline
 git clone https://github.com/Lokaltog/powerline-fonts.git ~/.fonts
 fc-cache -vf ~/.fonts/UbuntuMono

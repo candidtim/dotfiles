@@ -4,31 +4,51 @@
 
 ## Fresh install
 
-    wget https://raw.githubusercontent.com/candidtim/dotfiles/master/install.sh -O - | sh
-    
-## Doom emacs
+    mkdir ~/src
+    git clone https://github.com/candidtim/dotfiles.git ~/src/dotfiles
+    sudo ./install-su.sh
+    ./install.sh
 
+## Sway
 
+TODO
 
-## i3
+## i3 (deprecated, use Sway)
 
-I'm pretty sure I'm missing a lot of i3 configuration here,
-because to the moment I only did it once and all manually, yet there are:
+Install:
 
- * `/bin` - a couple of scripts to copy to `~/.bin`
- * `install-i3wm.sh` - to install requried pacakges to run i3
+    install-i3wm.sh
 
 And following steps are manual for the moment:
 
- * install Yosemite San Francisco fonts
- * install Font Awesome
- * install [Arc GTK Theme](https://github.com/horst3180/Arc-theme), and Firefox theme as well
- * install [Moka icons](https://snwh.org/moka)
+ - install Yosemite San Francisco fonts
+ - install Font Awesome
+ - install [Arc GTK Theme](https://github.com/horst3180/Arc-theme), and Firefox theme as well
+ - install [Moka icons](https://snwh.org/moka)
 
-## Keep ctags automatically in sync
+## Other
 
-Use `~/.git_template/hooks` in Git repos to keep ctags up to date.
+### sudo password feedback
 
-## Other (yet to automate)
+ - Show `sudo` password as you type: `sudo visudo` and add `pwfeedback` after
+   `env_reset` (comma-separated)
 
- * Show `sudo` password as you type: `sudo visudo` and add `pwfeedback` after `env_reset` (comma-separated)
+### Gnome tweaks
+
+ - Keyboard: enable compose key
+
+### Firefox configuration
+
+To enable user stylesheets: `about:config`  set
+`toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
+
+To hide the tabs in the header:
+
+    @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+    #TabsToolbar {
+        visibility:collapse!important;
+    }
+    #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+        display:none;
+    }
+
