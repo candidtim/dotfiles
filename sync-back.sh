@@ -21,6 +21,8 @@ cp -f ~/.oh-my-zsh/themes/candidtim.zsh-theme ./.oh-my-zsh/themes
 cp -f ~/.doom.d/* ./.doom.d/
 cp -f ~/.i3/config ./.i3/
 cp -f ~/.i3/i3blocks.conf ./.i3/
+cp -f ~/.alacritty.yml .
+cp -f ~/.config/redshift.conf .config/
 
 sed -i '/user/,+2d' .gitconfig
 

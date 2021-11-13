@@ -6,25 +6,13 @@
 
     mkdir ~/src
     git clone https://github.com/candidtim/dotfiles.git ~/src/dotfiles
-    sudo ./install-su.sh
-    ./install.sh
+    cd ~/src/dotfiles
+    cat install-su.sh | sudo bash
+    source install.sh
 
-## Sway
+### Install tmux plugins
 
-TODO
-
-## i3 (deprecated, use Sway)
-
-Install:
-
-    install-i3wm.sh
-
-And following steps are manual for the moment:
-
- - install Yosemite San Francisco fonts
- - install Font Awesome
- - install [Arc GTK Theme](https://github.com/horst3180/Arc-theme), and Firefox theme as well
- - install [Moka icons](https://snwh.org/moka)
+Start `tmux` and type "Prefix + I"
 
 ## Other
 
@@ -42,7 +30,8 @@ And following steps are manual for the moment:
 To enable user stylesheets: `about:config`  set
 `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
 
-To hide the tabs in the header:
+To hide the tabs in the header, add following content to
+`~/.mozilla/firefox/<PROFILE>/chrome/userChrome.css`:
 
     @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
     #TabsToolbar {
@@ -52,3 +41,17 @@ To hide the tabs in the header:
         display:none;
     }
 
+### For Docker
+
+    firewall-cmd --zone=FedoraWorkstation --add-masquerade --permanent
+    firewall-cmd --reload
+
+## Desktop
+
+Restore Cinnamon configuration:
+
+    dconf load /org/cinnamon/ < ~/src/dotfiles/cinnamon.dconf.dump
+
+Save Cinnamon configuration, if changed:
+
+    dconf dump /org/cinnamon/ > ~/src/dotfiles/cinnamon.dconf.dump

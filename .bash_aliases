@@ -3,6 +3,9 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+# cd into actual directories, not symlinks
+alias cd='cd -P'
+
 # grep
 alias grep='grep --color'
 alias egrep='egrep --color=auto'
@@ -18,15 +21,17 @@ alias l=ls
 alias lf='find . -name'
 
 # Vim
-alias v=vim
+alias vim=vimx
+alias vi=vimx
+alias v=vimx
 
 # git
 alias g=git
 alias gg='git st'
 alias gk='gitk&'
 alias gka='gitk --all&'
-alias gdf='git diff --color | diff-so-fancy | less'
-alias gdc='git diff --cached --color | diff-so-fancy | less'
+alias gdf='git diff --color | diff-so-fancy | less -r'
+alias gdc='git diff --cached --color | diff-so-fancy | less -r'
 alias gdt='git difftool'
 alias gs='git stash list | cat'
 
@@ -35,6 +40,7 @@ alias ct='ctags -R .'
 
 # tmux
 #alias tmux="TERM=screen-256color-bce tmux"
+alias tmuxa='tmux attach-session -t 0'
 alias tls='tmux list-sessions'
 alias ts='tmux new -s'
 alias ta='tmux attach -t'
@@ -43,6 +49,7 @@ alias ta='tmux attach -t'
 alias py=python
 alias py3=python3
 alias activate='source venv/bin/activate'
+alias wactivate='workon $(basename $(pwd))'
 
 # gradle
 alias gr=gradle
@@ -53,10 +60,17 @@ alias mk=make
 # vagrant
 alias vg=vagrant
 
-# docker
+# terraform
+alias tf=terraform
+
+# "docker"
 alias dk=docker
 alias dc=docker-compose
 alias dkillall="docker ps -a && docker ps -a -q | xargs docker rm -f && docker ps -a"
+
+# kubernetes
+alias k=kubectl
+alias mmk='microk8s kubectl'
 
 # beep
 export BEEP=/usr/share/sounds/ubuntu/stereo/service-login.ogg
@@ -69,4 +83,3 @@ alias nau=nautilus
 
 # xclip to copy to clipboard by default
 alias clip='xclip -i -selection clipboard'
-

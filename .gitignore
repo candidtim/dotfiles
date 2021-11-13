@@ -20,3 +20,5 @@ dist/
 .metals/
 
 *.bak
+
+.local/

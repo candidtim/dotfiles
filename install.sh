@@ -5,7 +5,7 @@ curl -L http://install.ohmyz.sh | sh
 chsh -s $(which zsh)
 
 # basic directories
-mkdir -p ~/app ~/src ~/tmp ~/bin
+mkdir -p ~/app ~/src ~/tmp ~/bin ~/.marks ~/.config
 
 # install dotfiles
 cp ~/src/dotfiles/.allshrc ~
@@ -24,6 +24,8 @@ cp ~/src/dotfiles/.xinitrc ~
 cp ~/src/dotfiles/.Xmodmap ~
 cp ~/src/dotfiles/.zshrc ~
 cp ~/src/dotfiles/.oh-my-zsh/themes/candidtim.zsh-theme ~/.oh-my-zsh/themes
+cp ~/src/dotfiles/.alacritty.yml ~
+cp .config/redshift.conf ~/.config
 echo "source ${HOME}/.allshrc" >> ~/.bashrc
 touch ~/.shlocal
 
@@ -38,7 +40,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # .. create vim directories
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vimswap ~/.vimbackup
 # .. install Vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone --depth 1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # .. install plugins
 vim +PluginInstall +qall
 # .. install powerline fonts for vim-airline
