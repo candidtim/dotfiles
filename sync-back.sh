@@ -2,6 +2,7 @@
 
 pushd ~/src/dotfiles
 
+cp -f ~/.alacritty.yml .
 cp -f ~/.allshrc .
 cp -f ~/.bash_aliases .
 cp -f ~/.bash_functions .
@@ -17,7 +18,6 @@ cp -f ~/.vimrc .
 cp -f ~/.xinitrc .
 cp -f ~/.zshrc .
 cp -f ~/.oh-my-zsh/themes/candidtim.zsh-theme ./.oh-my-zsh/themes
-cp -f ~/.alacritty.yml .
 cp -f ~/.config/redshift.conf .config/
 
 sed -i '/user/,+2d' .gitconfig
