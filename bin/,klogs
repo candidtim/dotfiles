@@ -1,5 +1,0 @@
-#!/bin/bash
-
-POD_BASE_NAME=$1
-
-kubectl get pods | grep $POD_BASE_NAME | cut -d" " -f1 | xargs -n1 kubectl logs
