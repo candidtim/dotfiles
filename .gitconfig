@@ -17,6 +17,7 @@
   co = checkout
   co1 = checkout @{-1}
   df = diff
+  dt = difftool
   lg = log
   ps = push
   pl = pull --rebase
@@ -38,6 +39,8 @@
   tool = vimdiff
 [difftool]
   prompt = false
+[difftool "vimdiff"]
+	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
 [include]
   path = .gitconfiglocal
 [status]

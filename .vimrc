@@ -22,7 +22,7 @@ set autowrite           " autowrite files on change buffer, etc.
 set autoread            " autoread files when changed outside
 set clipboard^=unnamed,unnamedplus " copy to the system clipboard
 set backspace=indent,eol,start     " backspace by indent, over lines, start of insert
-" set wildmode=longest,list,full " zsh-like completion in ex
+set wildmode=longest,list,full " zsh-like completion in ex
 " set wildmenu
 " .. line numbers
 set number              " show line numbers
@@ -143,6 +143,9 @@ nmap <Leader>s :split<CR>
 " remove search highlight:
 nmap <silent> <Leader>. :nohlsearch<CR>
 
+" map F1 to Esacpe
+map <F1> <Esc>
+imap <F1> <Esc>
 " use `Shift-F6` to rename current highlight globally
 nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
 "
@@ -259,8 +262,9 @@ map <Leader><Leader> <Plug>(easymotion-prefix)
 hi link EasyMotionShade Comment
 
 " Polyglot (languages support)
-Plugin 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['markdown']
+" Plugin 'sheerun/vim-polyglot'
+" let g:polyglot_disabled = ['markdown']
+" " let g:polyglot_disabled = ['markdown', 'python', 'python-indent', 'ftdetect']
 
 " Vim Slime
 Plugin 'jpalardy/vim-slime'
@@ -286,15 +290,15 @@ nmap <M-n> :GitGutterPrevHunk<CR>
 nmap <C-u> :GitGutterUndoHunk<CR>
 
 " NeoComplete
-" Plugin 'Shougo/neocomplete.vim'
-" let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
-" let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
-" let g:neocomplete#enable_smart_case = 1 " Use smartcase.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
+Plugin 'Shougo/neocomplete.vim'
+let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
+let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
+let g:neocomplete#enable_smart_case = 1 " Use smartcase.
+let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
 
 " Deoplete
-Plugin 'shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
+" Plugin 'shougo/deoplete.nvim'
+" let g:deoplete#enable_at_startup = 1
 
 " Supertab (complete with Tab)
 Plugin 'ervandew/supertab'
@@ -309,30 +313,27 @@ let g:rooter_silent_chdir = 1 " don't echo when changing the root dir
 " AsyncRun
 Plugin 'skywind3000/asyncrun.vim'
 
-" Fugitive Git
-Plugin 'tpope/vim-fugitive'
-nmap <Leader>gd :Git diff<CR>
-
 " Coc (LSP)
 " Plugin 'neoclide/coc.nvim'
 
 "" Clojure
 
 " Exclude dot from keywords (word motion)
-autocmd Syntax clojure set iskeyword-=.
+" autocmd Syntax clojure set iskeyword-=.
+" autocmd Syntax clojure set iskeyword+=-
 
 " Rainbow Parenthesis (enabled for Clojure only)
-Plugin 'kien/rainbow_parentheses.vim'
-autocmd VimEnter * RainbowParenthesesToggle
-autocmd Syntax clojure RainbowParenthesesLoadRound
-autocmd Syntax clojure RainbowParenthesesLoadSquare
-autocmd Syntax clojure RainbowParenthesesLoadBraces
+" Plugin 'kien/rainbow_parentheses.vim'
+" autocmd VimEnter * RainbowParenthesesToggle
+" autocmd Syntax clojure RainbowParenthesesLoadRound
+" autocmd Syntax clojure RainbowParenthesesLoadSquare
+" autocmd Syntax clojure RainbowParenthesesLoadBraces
 
 " Vim Iced and its requirements
-Plugin 'guns/vim-sexp'
-Plugin 'liquidz/vim-iced'
+" Plugin 'guns/vim-sexp'
+" Plugin 'liquidz/vim-iced'
 " .. enable vim-iced's default key mapping
-let g:iced_enable_default_key_mappings = v:true
+" let g:iced_enable_default_key_mappings = v:true
 " FIXME: consider activating clj-kondo
 " let g:ale_linters = {'clojure': ['clj-kondo']}
 

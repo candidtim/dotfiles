@@ -7,7 +7,7 @@ source "${HOME}/.bash_functions"
 
 export CDPATH=.:~/src:~/.marks
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+export VIRTUALENVWRAPPER_PYTHON=python3
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/src
 source /usr/local/bin/virtualenvwrapper.sh

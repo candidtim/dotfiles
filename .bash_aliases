@@ -3,9 +3,6 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# cd into actual directories, not symlinks
-alias cd='cd -P'
-
 # grep
 alias grep='grep --color'
 alias egrep='egrep --color=auto'
@@ -21,17 +18,17 @@ alias l=ls
 alias lf='find . -name'
 
 # Vim
-alias vim=vimx
-alias vi=vimx
-alias v=vimx
+alias vim=vim
+alias vi=vim
+alias v=vim
 
 # git
 alias g=git
 alias gg='git st'
 alias gk='gitk&'
 alias gka='gitk --all&'
-alias gdf='git diff --color | diff-so-fancy | less -r'
-alias gdc='git diff --cached --color | diff-so-fancy | less -r'
+alias gdf='git diff --color | diff-so-fancy | less'
+alias gdc='git diff --cached --color | diff-so-fancy | less'
 alias gdt='git difftool'
 alias gs='git stash list | cat'
 
@@ -49,7 +46,6 @@ alias ta='tmux attach -t'
 alias py=python
 alias py3=python3
 alias activate='source venv/bin/activate'
-alias wactivate='workon $(basename $(pwd))'
 
 # gradle
 alias gr=gradle
@@ -71,11 +67,12 @@ alias dkillall="docker ps -a && docker ps -a -q | xargs docker rm -f && docker p
 # kubernetes
 alias k=kubectl
 alias mmk='microk8s kubectl'
+alias kcgc='kubectl config get-contexts'
+alias kcuc='kubectl config use-context'
 
 # beep
 export BEEP=/usr/share/sounds/ubuntu/stereo/service-login.ogg
 alias beep='paplay $BEEP'
-alias alert='notify-send "$([ $? = 0 ] && echo Done || echo ERROR)" && beep'
 
 # nautilus
 alias nautilus='nautilus --no-desktop'
@@ -83,3 +80,8 @@ alias nau=nautilus
 
 # xclip to copy to clipboard by default
 alias clip='xclip -i -selection clipboard'
+
+# network manager
+alias ns='nmcli connection show'
+alias nu='nmcli connection up'
+alias nd='nmcli connection down'
