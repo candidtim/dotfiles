@@ -50,6 +50,10 @@ fc-cache -vf ~/.fonts/UbuntuMono
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# dircolors
+mkdir ~/.solarized
+wget -O ~/.solarized/dircolors https://raw.githubusercontent.com/huyz/dircolors-solarized/master/dircolors.ansi-dark
+
 # reminders
 echo Install solarized color scheme manually:
 echo  - create new terminal profile 'Solarized'
