@@ -1,19 +1,8 @@
-eval `dircolors ~/.solarized/dircolors`
-
 export EDITOR=vi
 
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_functions"
 
-export CDPATH=.:~/src:~/.marks
+export CDPATH=.:~/src
 
-export VIRTUALENVWRAPPER_PYTHON=python3
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/src
-source /usr/local/bin/virtualenvwrapper.sh
-
-export GIT_TEMPLATE_DIR=~/src/dotfiles/.git_template
-
-if [ -f "${HOME}/.shlocal" ]; then
-  source "${HOME}/.shlocal"
-fi
+source "${HOME}/.shlocal"

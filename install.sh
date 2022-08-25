@@ -24,7 +24,6 @@ cp ~/src/dotfiles/.vimrc ~
 cp ~/src/dotfiles/.xinitrc ~
 cp ~/src/dotfiles/.zshrc ~
 cp ~/src/dotfiles/.oh-my-zsh/themes/candidtim.zsh-theme ~/.oh-my-zsh/themes
-cp .config/redshift.conf ~/.config
 echo "source ${HOME}/.allshrc" >> ~/.bashrc
 touch ~/.shlocal
 
@@ -53,9 +52,3 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # dircolors
 mkdir ~/.solarized
 wget -O ~/.solarized/dircolors https://raw.githubusercontent.com/huyz/dircolors-solarized/master/dircolors.ansi-dark
-
-# reminders
-echo Install solarized color scheme manually:
-echo  - create new terminal profile 'Solarized'
-echo  - configure it to use 'Ubuntu Mono Derivative Powerline' font
-echo  - run '~/src/dotfiles/solarized-install.sh'
