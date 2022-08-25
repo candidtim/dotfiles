@@ -24,8 +24,10 @@ mkdir ~/src ~/tmp ~/app ~/bin
 # Copy dotfiles
 cp ~/src/dotfiles/.alacritty.yml ~
 # .. and adjust for Mac
-sed -i '' 's#/usr/bin/zsh#/bin/zsh#' ~/.alacritty.yml
-sed -i '' 's#Ubuntu Mono derivative Powerline#Menlo for Powerline#' ~/.alacritty.yml
+sed -i '' 's#program: /usr/bin/zsh#program: /bin/zsh#' ~/.alacritty.yml
+sed -i '' 's#Ubuntu Mono derivative Powerline#Roboto Mono Light for Powerline#' ~/.alacritty.yml
+sed -i '' 's#Regular#Light#' ~/.alacritty.yml
+sed -i '' 's#size: 14.0#size: 16.0#' ~/.alacritty.yml
 cp ~/src/dotfiles/.allshrc ~
 cp ~/src/dotfiles/.bash_aliases ~
 cp ~/src/dotfiles/.bash_functions ~
