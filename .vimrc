@@ -50,8 +50,8 @@ if !has('nvim')
 endif
 " .. disable bell
 set t_vb=
-" .. show 80 chars limit column
-set colorcolumn=80,88
+" .. show 88 chars limit column
+set colorcolumn=88
 highlight ColorColumn ctermbg=grey guibg=grey
 " .. backup
 set backupdir=~/.vimbackup

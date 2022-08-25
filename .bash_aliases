@@ -31,15 +31,15 @@ alias gdf='git diff --color | diff-so-fancy | less'
 alias gdc='git diff --cached --color | diff-so-fancy | less'
 alias gdt='git difftool'
 alias gs='git stash list | cat'
+alias gpl='git pull --rebase'
+alias tiga='tig --all'
 
 # ctags
 alias ct='ctags -R .'
 
 # tmux
-#alias tmux="TERM=screen-256color-bce tmux"
-alias tmuxa='tmux attach-session -t 0'
+alias tm='tmux list-sessions 2>/dev/null | grep "0:" && tmux attach-session -t 0 || tmux'
 alias tls='tmux list-sessions'
-alias ts='tmux new -s'
 alias ta='tmux attach -t'
 
 # python
