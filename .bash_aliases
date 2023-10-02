@@ -18,9 +18,9 @@ alias l=ls
 alias lf='find . -name'
 
 # Vim
-alias vim=vim
-alias vi=vim
-alias v=vim
+alias vim=nvim
+alias vi=nvim
+alias v=nvim
 
 # git
 alias g=git
@@ -30,7 +30,6 @@ alias gka='gitk --all&'
 alias gdf='git diff --color | diff-so-fancy | less'
 alias gdc='git diff --cached --color | diff-so-fancy | less'
 alias gdt='git difftool'
-alias gs='git stash list | cat'
 alias gpl='git pull --rebase'
 alias tiga='tig --all'
 

@@ -15,6 +15,8 @@ cp -f ~/.tmux.colours.conf .
 cp -f ~/.tmux.conf .
 cp -f ~/.tmux.project .
 cp -f ~/.vimrc .
+cp -f ~/.config/nvim/init.vim ./.config/nvim/
+cp -f ~/.config/nvim/lua/init.lua ./.config/nvim/lua/
 cp -f ~/.xinitrc .
 cp -f ~/.zshrc .
 cp -f ~/.oh-my-zsh/themes/candidtim.zsh-theme ./.oh-my-zsh/themes

@@ -19,6 +19,9 @@ dist/
 .bloop/
 .metals/
 
-*.bak
+# Mac
+.DS_Store
 
+# Local files
+*.bak
 .local/

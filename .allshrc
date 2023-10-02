@@ -1,5 +1,11 @@
 export EDITOR=vi
 
+# edit command line in Vim:
+export VISUAL=vi
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_functions"
 

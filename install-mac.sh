@@ -11,7 +11,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 # Install packages
 brew install git tig ctags fzf diff-so-fancy tmux python pipenv poetry
-brew install --cask macvim font-menlo-for-powerline meld
+brew install --cask macvim neovim font-menlo-for-powerline meld
 
 # Install JDK
 brew tap homebrew/cask-versions
@@ -35,6 +35,8 @@ cp ~/src/dotfiles/.ctags ~
 cp ~/src/dotfiles/.gitconfig ~
 cp ~/src/dotfiles/.gitignore ~
 cp ~/src/dotfiles/.gvimrc ~
+# .. and adjust for Mac
+sed -i '' 's#set gfn=Ubuntu\\ Mono\\ derivative\\ Powerline\\ 13#set gfn=Roboto\\ Mono\\ Light\\ for\\ Powerline:h16#' .gvimrc
 cp ~/src/dotfiles/.ideavimrc ~
 cp ~/src/dotfiles/.tmux.colours.conf ~
 cp ~/src/dotfiles/.tmux.conf ~
@@ -55,6 +57,9 @@ echo 'export KEYTIMEOUT=1' >> ~/.zshrc
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vimswap ~/.vimbackup
 # .. install Vundle
 git clone --depth 1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# .. install Vim-plug for Neovim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 # .. install plugins
 vim +PluginInstall +qall
 
@@ -65,6 +70,8 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo "To do:"
 echo "- Add Homebrew dir to path (see instructions printed by Homebrew above)"
 echo "- Start tmux plugins with prefix+I"
-echo "- Change Alacritty config to use font 'Menlo for Powerline'"
 echo "- Change System Preferences:"
 echo "  - Keyboard: key repeat fast, delay before repeat shortest."
+echo "- Install YCM for Vim ('python install.sh' in the YCM plugin dir)"
+echo "- If using Python: 'brew install black isort flake8'"
+echo "- If using Common Lisp: 'brew install sbcl rlwrap' and './install-lisp.sh'"

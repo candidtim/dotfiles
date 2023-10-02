@@ -172,7 +172,7 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Solarized Light)
+# Colors (Solarized)
 colors:
   # Default colors
   primary:
@@ -338,6 +338,35 @@ colors:
   #   `- { index: 16, color: '#ff00ff' }`
   #
   #indexed_colors: []
+
+# Colors (Everforest Regular)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0xfdf6e3'
+#     foreground: '0x5c6a72'
+#
+#   # Normal colors
+#   normal:
+#     black:   '0x5c6a72'
+#     red:     '0xf85552'
+#     green:   '0x8da101'
+#     yellow:  '0xdfa000'
+#     blue:    '0x3a94c5'
+#     magenta: '0xdf69ba'
+#     cyan:    '0x35a77c'
+#     white:   '0xe0dcc7'
+#
+#   # Bright Colors
+#   bright:
+#     black:   '0x5c6a72'
+#     red:     '0xf85552'
+#     green:   '0x8da101'
+#     yellow:  '0xdfa000'
+#     blue:    '0x3a94c5'
+#     magenta: '0xdf69ba'
+#     cyan:    '0x35a77c'
+#     white:   '0xe0dcc7'
 
 # Bell
 #
