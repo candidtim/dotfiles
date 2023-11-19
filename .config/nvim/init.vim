@@ -146,7 +146,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
 set noshowmode
-let g:airline_powerline_fonts = 1
 
 " Fuzzy find
 Plug 'junegunn/fzf'
