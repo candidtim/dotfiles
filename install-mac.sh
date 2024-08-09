@@ -24,8 +24,6 @@ mkdir ~/src ~/tmp ~/app ~/bin
 # Copy dotfiles
 cp ~/src/dotfiles/.allshrc ~
 cp ~/src/dotfiles/.bash_aliases ~
-cp ~/src/dotfiles/.bash_functions ~
-cp ~/src/dotfiles/.ctags ~
 cp ~/src/dotfiles/.gitconfig ~
 cp ~/src/dotfiles/.gitignore ~
 cp ~/src/dotfiles/.tmux.colors.light.conf ~

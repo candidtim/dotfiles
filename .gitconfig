@@ -11,40 +11,29 @@
 [alias]
   st = status -sb
   ci = commit
-  cii = commit --amend
   cm = commit -m
   br = branch
   co = checkout
-  co1 = checkout @{-1}
   df = diff
   dt = difftool
-  lg = log
-  ps = push
   pl = pull --rebase
-  rb = rebase
   aa = add --all .
-  au = add -u
-  conf = config
-  tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
-  tr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit -10
-  tra = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --all
-  fixup = commit --fixup
-  sq = commit --allow-empty --squash
   ri = rebase --interactive --autosquash
-  serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
 [merge]
-  tool = vimdiff
+  tool = nvimdiff
   conflictstyle = diff3
+[mergetool]
+  keepBackup = false
+  prompt = false
+[mergetool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
 [difftool]
   prompt = false
-[difftool "vimdiff"]
-	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
-[include]
-  path = .gitconfiglocal
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [status]
 	showUntrackedFiles = all
 [init]
-	templatedir = ~/.git_template
 	defaultBranch = master

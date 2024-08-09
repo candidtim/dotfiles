@@ -1,27 +1,3 @@
-# Exuberant Ctags
-tags
-.tags
-.tags_*
-
-# IDEA
-.idea/
-*.iml
-*.ipr
-
-# Node and Grunt
-node_modules/
-dist/
-
-# VSCode
-.vscode/
-.ensime
-.ensime_cache/
-.bloop/
-.metals/
-
-# Mac
-.DS_Store
-
 # Local files
 *.bak
 .local/

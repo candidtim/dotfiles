@@ -2,8 +2,6 @@
 
 cp -f ~/.allshrc .
 cp -f ~/.bash_aliases .
-cp -f ~/.bash_functions .
-cp -f ~/.ctags .
 cp -f ~/.gitconfig .
 cp -f ~/.gitignore .
 cp -f ~/.tmux.colors.light.conf .

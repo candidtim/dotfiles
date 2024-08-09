@@ -7,7 +7,6 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 source "${HOME}/.bash_aliases"
-source "${HOME}/.bash_functions"
 
 export CDPATH=.:~/src
 
