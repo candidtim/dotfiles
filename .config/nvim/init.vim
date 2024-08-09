@@ -24,7 +24,7 @@ set shiftwidth=2
 set expandtab           " use TAB to insert spaces
 
 " Show the 80-char limit
-set colorcolumn=80
+set colorcolumn=88
 highlight ColorColumn ctermbg=grey guibg=grey
 
 " Do not show ~ at the end of the buffers
@@ -39,6 +39,9 @@ autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
 " Capital W to write with sudo
 comm W exec 'w !sudo tee % > /dev/null' | e!
 
+" File types
+au BufNewFile,BufRead justfile setf make
+
 
 "
 " Key mappings
@@ -46,9 +49,6 @@ comm W exec 'w !sudo tee % > /dev/null' | e!
 
 " use spacebar as leader
 let mapleader = " "
-
-" command with ;
-nnoremap ; :
 
 " up and down on wrapped lines
 nnoremap j gj
@@ -120,6 +120,9 @@ iab tt [ ]
 " Alias :Q to :q!
 command Q q! "
 
+" Reload config
+nmap <Leader>rf :source ~/.config/nvim/init.vim<CR>
+
 "
 " Plugins
 "
@@ -135,6 +138,7 @@ let g:NERDTreeRespectWildIgnore=1
 " close vim if all buffers are closed, but the NERDTree
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " mappings:
+map <C-e> :NERDTreeToggle<CR>
 map <Leader>nn :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
 
@@ -146,25 +150,30 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
 set noshowmode
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
 
 " Fuzzy find
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 set rtp+=~/.fzf
-set wildignore+=*/node_modules/*,*/build/*,*/target/*,*/.git/*,*/*.egg-info/*,*/dist/*,*.class,*/__pycache__/*,*.pyc
+set wildignore+=*/node_modules/*,*/build/*,*/target/*,*/.git/*,*/*.egg-info/*,*/dist/*,*.class,*/__pycache__/*,*.pyc,*.fasl
 
 " delimitMate
 " (inserts matching parenthesis, brackets, etc.)
 Plug 'raimondi/delimitmate'
 
 " Solarized
-Plug 'altercation/vim-colors-solarized'
-set t_Co=16
-let g:solarized_termtrans = 1
+Plug 'lifepillar/vim-solarized8', { 'branch': 'neovim' }
+set termguicolors
+set background=light
+let g:solarized_visibility = "low"
+let g:solarized_italics = 0
+autocmd vimenter * ++nested colorscheme solarized8
 
 " Ack (uses ag)
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'ag --hidden --vimgrep'
 let g:ackhighlight = 1
 " mappings:
 nmap <Leader>at :Ack "TODO\|FIXME"<CR>
@@ -181,13 +190,13 @@ Plug 'tpope/vim-surround'
 
 " gitgutter
 Plug 'airblade/vim-gitgutter'
+let g:gitgutter_override_sign_column_highlight = 0
 
 " Fugitive
 Plug 'tpope/vim-fugitive'
 
 " Start screen
 Plug 'mhinz/vim-startify'
-let g:startify_custom_header = split(system('hnwelcome | cowsay -n'), '\n')
 
 " Rooter (changes `pwd` to the 'project root' of current open file)
 Plug 'airblade/vim-rooter'
@@ -196,9 +205,13 @@ let g:rooter_silent_chdir = 1 " don't echo when changing the root dir
 " tmux navigator
 Plug 'christoomey/vim-tmux-navigator'
 
-" Slime
-Plug 'jpalardy/vim-slime'
-let g:slime_target = "tmux"
+" Vlime
+Plug 'vlime/vlime', {'rtp': 'vim/'}
+let g:vlime_compiler_policy = {"DEBUG": 3}
+nnoremap <expr> <LocalLeader>ql
+  \ ":call vlime#plugin#SendToREPL('(asdf:load-system \"" . input("System name: ") . "\")')<CR>"
+nnoremap <expr> <LocalLeader>qt
+  \ ":call vlime#plugin#SendToREPL('(asdf:test-system \"" . input("System name: ") . "\")')<CR>"
 
 " VimWiki
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
@@ -213,22 +226,25 @@ Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn in
 let g:instant_markdown_autostart = 0
 
 " Rainbow parentheses
-Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'kien/rainbow_parentheses.vim'
+function! SetupRainbowParens()
+    autocmd FileType lisp,clojure,scheme,json RainbowParenthesesActivate
+    autocmd Syntax lisp,clojure,scheme RainbowParenthesesLoadRound
+    autocmd Syntax clojure RainbowParenthesesLoadSquare
+    autocmd Syntax json RainbowParenthesesLoadBraces
+endfunction
+autocmd VimEnter * call SetupRainbowParens()
 
 " Copilot
 Plug 'github/copilot.vim'
+let g:copilot_filetypes = {
+    \ '*' : v:false,
+    \ }
 
 " LSP configs
 Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
-
-" Activate the colortheme
-set background=light
-colorscheme solarized
-let g:airline_theme='solarized'
-highlight CursorLineNr term=bold cterm=bold gui=bold guifg=Yellow
-highlight clear SignColumn
 
 " Load lua/init.lua
 lua require('init')

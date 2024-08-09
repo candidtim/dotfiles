@@ -1,5 +1,5 @@
 [core]
-  editor = vim
+  editor = nvim
   autocrlf = false
   safecrlf = false
   excludesfile = ~/.gitignore
@@ -47,3 +47,4 @@
 	showUntrackedFiles = all
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = master

@@ -46,8 +46,11 @@ alias py=python
 alias py3=python3
 alias activate='source venv/bin/activate'
 
-# gradle
-alias gr=gradle
+# lisp
+alias cl='rlwrap sbcl'
+# sawnk server for vlime
+# (reminder: can disable debugger with --disable-debugger)
+alias swank='rlwrap sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp'
 
 # make
 alias mk=make
@@ -60,7 +63,7 @@ alias tf=terraform
 
 # "docker"
 alias dk=docker
-alias dc=docker-compose
+alias dc="docker compose"
 alias dkillall="docker ps -a && docker ps -a -q | xargs docker rm -f && docker ps -a"
 
 # kubernetes

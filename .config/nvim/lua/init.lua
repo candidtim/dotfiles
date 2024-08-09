@@ -1,17 +1,22 @@
 -- Plugin: https://github.com/neovim/nvim-lspconfig
 
 local lspconfig = require('lspconfig')
+
 lspconfig.pylsp.setup {
-  cmd = {'/Users/tim/app/pylsp/bin/pylsp'},
+  cmd = {'pylsp'},
   settings = {
     pylsp = {
       plugins = {
-        flake8 = { enabled = false }, -- default is false
-        pycodestyle = { enabled = true }, -- default is true
+        flake8 = { enabled = true }, -- default is false
+        pycodestyle = { enabled = false }, -- default is true
       }
     }
   }
 }
+
+lspconfig.gopls.setup{}
+
+lspconfig.phpactor.setup{}
 
 -- Key mappings for use with LSP:
 
@@ -33,7 +38,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'H', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-K>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<C-S>', vim.lsp.buf.signature_help, opts)
     -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
     -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
     -- vim.keymap.set('n', '<space>wl', function()

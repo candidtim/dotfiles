@@ -1,8 +1,8 @@
 #!/bin/bash
 
-pushd ~/app
-python3 -m venv pylsp
-./pylsp/bin/pip install python-lsp-server
-popd
-
-echo "alias pylsp=~/app/pylsp/bin/pylsp" > ~/.shlocal
+pipx ensurepath
+pipx install python-lsp-server
+pipx install black
+pipx install isort
+pipx install flake8
+pipx install poetry

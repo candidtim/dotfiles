@@ -26,10 +26,10 @@ foreground = "0x586e75"
 unfocused_hollow = true
 
 [font]
-size = 10.0
+size = 16.0
 
 [font.normal]
-family = "Monaspace Neon Var"
+family = "Ubuntu Mono derivative Powerline"
 style = "Regular"
 
 [mouse]
@@ -37,7 +37,7 @@ hide_when_typing = false
 
 [shell]
 args = ["--login"]
-program = "/usr/bin/zsh"
+program = "/bin/zsh"
 
 [window.dimensions]
 columns = 160
