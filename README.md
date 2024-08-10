@@ -20,9 +20,9 @@ Installation:
 
 Configuration:
 
- - Install tmux plugins with prefix+I"
- - Change System Preferences:"
-    - Keyboard: key repeat fast, delay before repeat shortest."
+ - Install tmux plugins with Prefix+I
+ - Change System Preferences:
+    - Keyboard: key repeat fast, delay before repeat shortest
 
 ## Fresh install - Linux
 
@@ -37,11 +37,11 @@ Installation:
 
 Configuration:
 
- - Install tmux plugins with prefix+I"
+ - Install tmux plugins with Prefix+I
  - Enable sudo password feedback: `sudo visudo` and add `pwfeedback` after
-   `env_reset` (comma-separated).
+   `env_reset` (comma-separated)
 
-## Keeping the dotfies up to date
+## Keeping the dotfiles up to date
 
 To sync local dotfiles back to the repository: './sync-back-mac.sh' or
 `./sync-back-linux.sh`.
