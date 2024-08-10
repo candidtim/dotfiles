@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# Install XCode CLI tools
-xcode-select --install
-
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
 # Install packages
-brew install git tig ctags fzf diff-so-fancy tmux python pipx sbcl rlwrap
+brew install git tig fzf diff-so-fancy tmux python pipx sbcl rlwrap
 brew install --cask neovim font-menlo-for-powerline meld
 
 # Install JDK
@@ -19,7 +13,7 @@ brew install --cask temurin8
 echo 'export JAVA_HOME=$(/usr/libexec/java_home -v 8)' >> ~/.shlocal
 
 # Create commonly-used directories
-mkdir ~/src ~/tmp ~/app ~/bin
+mkdir -p ~/src ~/tmp ~/app ~/bin
 
 # Copy dotfiles
 cp ~/src/dotfiles/.allshrc ~
@@ -53,9 +47,3 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install Python apps
 source ~/src/dotfiles/install-py.sh
-
-echo "To do:"
-echo "- Add Homebrew dir to path (see instructions printed by Homebrew above)"
-echo "- Install tmux plugins with prefix+I"
-echo "- Change System Preferences:"
-echo "  - Keyboard: key repeat fast, delay before repeat shortest."

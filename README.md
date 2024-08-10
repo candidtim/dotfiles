@@ -2,22 +2,46 @@
 
 .bashrc, .zshrc, .vimrc and the company
 
-## Fresh install
+## Fresh install - MacOS
+
+Prerequisites:
+
+ - [iTerm2](https://iterm2.com/)
+ - XCode CLI tools: `xcode-select --install`
+ - [Homebrew](https://brew.sh/)
+ - Git: `brew install git`
+
+Installation:
+
+    mkdir ~/src
+    git clone https://github.com/candidtim/dotfiles.git ~/src/dotfiles
+    cd ~/src/dotfiles
+    ./install-mac.sh
+
+Configuration:
+
+ - Install tmux plugins with prefix+I"
+ - Change System Preferences:"
+    - Keyboard: key repeat fast, delay before repeat shortest."
+
+## Fresh install - Linux
+
+Installation:
 
     apt install git
     mkdir ~/src
     git clone https://github.com/candidtim/dotfiles.git ~/src/dotfiles
     cd ~/src/dotfiles
-    cat install-su.sh | sudo bash
-    source install.sh
+    cat install-linux-su.sh | sudo bash
+    ./install-linux.sh
 
-## Install tmux plugins
+Configuration:
 
-Start `tmux` and type "Prefix + I"
+ - Install tmux plugins with prefix+I"
+ - Enable sudo password feedback: `sudo visudo` and add `pwfeedback` after
+   `env_reset` (comma-separated).
 
-## Manual changes
+## Keeping the dotfies up to date
 
-Enable sudo password feedback:
-
- - Show `sudo` password as you type: `sudo visudo` and add `pwfeedback` after
-   `env_reset` (comma-separated)
+To sync local dotfiles back to the repository: './sync-back-mac.sh' or
+`./sync-back-linux.sh`.

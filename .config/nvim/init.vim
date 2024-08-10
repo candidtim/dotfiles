@@ -23,7 +23,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab           " use TAB to insert spaces
 
-" Show the 80-char limit
+" Show the 88-char limit
 set colorcolumn=88
 highlight ColorColumn ctermbg=grey guibg=grey
 
@@ -56,7 +56,7 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" keep current split only à-la Emacs
+" keep the current split only, à-la Emacs
 nmap <C-x>1 :only<CR>
 
 " save, open, tags, switch buffers, etc.:
@@ -72,12 +72,6 @@ nmap <Leader>fp :GFiles<CR>
 nmap <Leader>fh :History<CR>
 " .. list buffers:
 nmap <Leader>bb :Buffers<CR>
-" .. close buffer:
-nmap <Leader>bd :bd<CR>
-" .. list tags:
-nmap <Leader>tt :Tags<CR>
-" .. generate tags:
-nmap <Leader>tg :!ctags -R .<CR>
 " .. quit:
 nmap <Leader>q :quit<CR>
 " .. vertical split:
@@ -117,9 +111,6 @@ vmap <Leader>b S*lvt*S*
 iab <expr> dts strftime("%Y-%m-%d")
 iab tt [ ]
 
-" Alias :Q to :q!
-command Q q! "
-
 " Reload config
 nmap <Leader>rf :source ~/.config/nvim/init.vim<CR>
 
@@ -135,7 +126,7 @@ let g:NERDTreeWinPos = "right" " NERDTree on the right side
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeMinimalMenu=1
 let g:NERDTreeRespectWildIgnore=1
-" close vim if all buffers are closed, but the NERDTree
+" close vim if all buffers are closed but the NERDTree
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " mappings:
 map <C-e> :NERDTreeToggle<CR>
@@ -237,9 +228,8 @@ autocmd VimEnter * call SetupRainbowParens()
 
 " Copilot
 Plug 'github/copilot.vim'
-let g:copilot_filetypes = {
-    \ '*' : v:false,
-    \ }
+" disable by default
+let g:copilot_filetypes = {'*' : v:false}
 
 " LSP configs
 Plug 'neovim/nvim-lspconfig'
