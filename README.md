@@ -43,5 +43,5 @@ Configuration:
 
 ## Keeping the dotfiles up to date
 
-To sync local dotfiles back to the repository: './sync-back-mac.sh' or
+To sync local dotfiles back to the repository: `./sync-back-mac.sh` or
 `./sync-back-linux.sh`.
