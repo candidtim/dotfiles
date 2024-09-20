@@ -2,7 +2,7 @@
 
 .bashrc, .zshrc, .vimrc and the company
 
-## Fresh install - MacOS
+## Fresh install - macOS
 
 Prerequisites:
 
@@ -21,6 +21,8 @@ Installation:
 Configuration:
 
  - Install tmux plugins with Prefix+I
+ - Enable sudo password feedback: `sudo visudo` and add `pwfeedback` after
+   `env_reset` (comma-separated)
  - Change System Preferences:
     - Keyboard: key repeat fast, delay before repeat shortest
 
