@@ -10,6 +10,6 @@ source "${HOME}/.bash_aliases"
 
 export CDPATH=.:~/src
 
-export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:~/.local/bin:~/bin"
 
 source "${HOME}/.shlocal"
