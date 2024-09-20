@@ -32,8 +32,8 @@ let &fcs='eob: '
 
 " Autoread and autowrite
 set autoread            " autoread files when changed outside
-set autowriteall        " autowrite files on change buffer, etc.
-autocmd FocusLost * silent! wall " autosave when Vim loses focus (switch to other app)
+" set autowriteall        " autowrite on :quit
+autocmd InsertLeave,TextChanged,FocusLost * silent! wall " autosave
 autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
 
 " Capital W to write with sudo
