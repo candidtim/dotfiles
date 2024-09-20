@@ -16,6 +16,7 @@ alias l=ls
 alias vim=nvim
 alias vi=nvim
 alias v=nvim
+alias vw='vi +VimwikiIndex'
 
 # git
 alias g=git
@@ -28,6 +29,9 @@ alias tiga='tig --all'
 
 # tmux
 alias tm='tmux list-sessions 2>/dev/null | grep "0:" && tmux attach-session -t 0 || tmux'
+
+# python
+alias po='poetry'
 
 # lisp
 alias cl='rlwrap sbcl'
