@@ -21,8 +21,8 @@ alias vw='vi +VimwikiIndex'
 # git
 alias g=git
 alias gg='git st'
-alias gdf='git diff --color | diff-so-fancy | less'
-alias gdc='git diff --cached --color | diff-so-fancy | less'
+alias gdf='git diff --color -- ":!*.lock" | diff-so-fancy | less'
+alias gdc='git diff --cached --color -- ":!*.lock" | diff-so-fancy | less'
 alias gdt='git difftool'
 alias gpl='git pull --rebase'
 alias tiga='tig --all'
