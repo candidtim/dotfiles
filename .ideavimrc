@@ -1,0 +1,58 @@
+" search options
+set hlsearch            " highlight search results
+set ignorecase          " case-insensitive search, see next one
+set smartcase           " consider case if search starts with Uppercase
+set incsearch           " show mathes while typing
+
+" line numbers
+set number              " show line numbers
+set relativenumber      " or actually relative numbers on all lines except current
+set colorcolumn=88
+
+" leader key
+set notimeout           " Leader doesn't time out
+let mapleader = " "
+
+" up and down on wrapped lines
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" keep the current split only, à-la Emacs
+nmap <C-x>1 :only<CR>
+
+" .. vertical split:
+nmap <Leader>v :vsplit<CR>
+" .. horizontal split:
+nmap <Leader>h :split<CR>
+" .. quit:
+nmap <Leader>q :quit<CR>
+
+" remove search highlight:
+nmap <silent> <Leader>. :nohlsearch<CR>
+
+" open, switch buffers, etc.:
+map <Leader>bb <Action>(RecentFiles)
+map <Leader>ff <Action>(GotoFile)
+map <Leader>fp <Action>(GotoFile)
+
+" LSP-like actions:
+nmap gu <Action>(FindUsages)
+nmap cf <Action>(ReformatCode)
+
+" file tree actions:
+nmap nf <Action>(SelectInProjectView)
+
+" navigation actions:
+nmap H <Action>(PreviousTab)
+nmap L <Action>(NextTab)
+
+" jump actions
+nmap <leader><leader>w <Action>(AceWordForwardAction)
+nmap <leader><leader>b <Action>(AceWordBackwardsAction)
+nmap <leader><leader>j <Action>(AceLineStartsAction)
+nmap <leader><leader>k <Action>(AceLineStartsAction)
+
+" temp macros: start with qq, stop with q, repeat with Q
+map Q @q
