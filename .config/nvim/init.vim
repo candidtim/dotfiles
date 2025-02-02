@@ -5,7 +5,7 @@
 " Commonly-used settings
 set cursorline          " highlight the line the cursor is on
 set scrolloff=3         " make some context visible
-set nowrap              " don't wrap long lines
+set wrap                " wrap long lines
 set timeoutlen=250      " Esc faster
 set notimeout           " Leader doesn't time out
 set clipboard+=unnamedplus " use the system clipboard
@@ -22,10 +22,6 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab           " use TAB to insert spaces
-
-" Show the 88-char limit
-set colorcolumn=88
-highlight ColorColumn ctermbg=grey guibg=grey
 
 " Do not show ~ at the end of the buffers
 let &fcs='eob: '
@@ -126,6 +122,7 @@ let g:NERDTreeWinPos = "right" " NERDTree on the right side
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeMinimalMenu=1
 let g:NERDTreeRespectWildIgnore=1
+let g:NERDTreeIgnore=['__pycache__']
 " close vim if all buffers are closed but the NERDTree
 au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " mappings:
@@ -142,7 +139,7 @@ Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
 set noshowmode
 let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
+let g:airline_theme='wombat'  " solarized
 
 " Fuzzy find
 Plug 'junegunn/fzf'
@@ -157,10 +154,10 @@ Plug 'raimondi/delimitmate'
 " Solarized
 Plug 'lifepillar/vim-solarized8', { 'branch': 'neovim' }
 set termguicolors
-set background=light
+set background=dark
 let g:solarized_visibility = "low"
 let g:solarized_italics = 0
-autocmd vimenter * ++nested colorscheme solarized8
+autocmd vimenter * ++nested colorscheme retrobox  " solarized8
 
 " Ack (uses ag)
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
@@ -188,6 +185,9 @@ Plug 'tpope/vim-fugitive'
 
 " Start screen
 Plug 'mhinz/vim-startify'
+let g:startify_custom_header = ''
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
 
 " Rooter (changes `pwd` to the 'project root' of current open file)
 Plug 'airblade/vim-rooter'
@@ -227,9 +227,9 @@ endfunction
 autocmd VimEnter * call SetupRainbowParens()
 
 " Copilot
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 " disable by default
-let g:copilot_filetypes = {'*' : v:false}
+" let g:copilot_filetypes = {'*' : v:false}
 
 " LSP configs
 Plug 'neovim/nvim-lspconfig'

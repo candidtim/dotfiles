@@ -2,3 +2,6 @@
 *.bak
 .local/
 .DS_Store
+todo.md
+notes.md
+.idea/
