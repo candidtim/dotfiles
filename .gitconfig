@@ -6,8 +6,21 @@
   pager = less -r
 [push]
   default = simple
+  autoSetupRemote = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[pull]
+  rebase = true
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
 [color]
   ui = true
+[column]
+  ui = auto
 [alias]
   st = status -sb
   ci = commit
@@ -16,7 +29,7 @@
   co = checkout
   df = diff
   dt = difftool
-  pl = pull --rebase
+  pl = pull
   aa = add --all .
   ri = rebase --interactive --autosquash
 [merge]
@@ -29,6 +42,8 @@
 	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 [diff]
   tool = nvimdiff
+  mnemonicPrefix = true
+  renames = true
 [difftool]
   prompt = false
 [difftool "nvimdiff"]
@@ -37,3 +52,8 @@
 	showUntrackedFiles = all
 [init]
 	defaultBranch = master
+[help]
+  autocorrect = prompt
+[gui]
+  fontui = -family sans-serif -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = -family sans-serif -size 12 -weight normal -slant roman -underline 0 -overstrike 0

@@ -1,7 +1,13 @@
-# Local files
+# macOs
+.DS_Store
+
+# Claude Code local files
+CLAUDE.md
+.claude/settings.local.json
+
+# Custom local files
 *.bak
 .local/
-.DS_Store
 todo.md
 notes.md
-.idea/
+wip.md
