@@ -1,8 +1,17 @@
--- Plugin: https://github.com/neovim/nvim-lspconfig
+--
+-- Lualine
+--
 
-local lspconfig = require('lspconfig')
+require('lualine').setup {
+  options = { theme = 'gruvbox' }
+}
 
-lspconfig.pylsp.setup {
+
+--
+-- LSP settings
+--
+
+vim.lsp.config('pylsp', {
   settings = {
     pylsp = {
       plugins = {
@@ -11,39 +20,58 @@ lspconfig.pylsp.setup {
       }
     }
   }
-}
+})
+vim.lsp.enable('pylsp')
 
-lspconfig.gopls.setup{}
+vim.lsp.config('ruff', {
+  init_options = {
+    settings = {
+      organizeImports = true
+    }
+  }
+})
+vim.lsp.enable('ruff')
 
-lspconfig.hls.setup{}
+vim.lsp.enable('gopls')
+vim.lsp.enable('hls')
 
--- Key mappings - global
--- .. show nad navigate diagnostic messages
-vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist)
-vim.keymap.set('n', 'g]', vim.diagnostic.goto_prev)
-vim.keymap.set('n', 'g]', vim.diagnostic.goto_next)
 
--- Key mappings - buffer
+--
+-- LSP key bindings
+--
+
+function format()
+  vim.lsp.buf.format { async = true }
+end
+
+function setup_lsp_keymaps(bufnr)
+  local opts = { buffer = bufnr }
+
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', 'gci', vim.lsp.buf.incoming_calls, opts)
+  vim.keymap.set('n', 'gco', vim.lsp.buf.outgoing_calls, opts)
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', 'K',  vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'go', vim.lsp.buf.document_symbol, opts)
+
+  vim.keymap.set({'n', 'v'}, 'ga', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', 'gn', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', 'gf', format, opts)
+  vim.keymap.set('n', '<leader>cf', format, opts)
+
+  vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, opts)
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
-
-    -- Enable completion triggered by <c-x><c-o>
+    setup_lsp_keymaps(ev.buf)
     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-S>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', 'cd', vim.lsp.buf.rename, opts)
-    vim.keymap.set({'n', 'v'}, 'g.', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gA', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, opts)
-
-  end,
+  end
 })

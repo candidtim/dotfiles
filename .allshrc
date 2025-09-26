@@ -12,4 +12,4 @@ export CDPATH=.:~/src
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 
-source "${HOME}/.shlocal"
+source "$HOME/.shlocal"

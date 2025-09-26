@@ -35,10 +35,6 @@ autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
 " Capital W to write with sudo
 comm W exec 'w !sudo tee % > /dev/null' | e!
 
-" File types
-au BufNewFile,BufRead justfile setf make
-
-
 "
 " Key mappings
 "
@@ -66,6 +62,7 @@ nmap <Leader>ff :Files<CR>
 nmap <Leader>fp :GFiles<CR>
 " .. find in file edit history:
 nmap <Leader>fh :History<CR>
+nmap <Leader>fr :History<CR>
 " .. list buffers:
 nmap <Leader>bb :Buffers<CR>
 " .. quit:
@@ -88,8 +85,10 @@ nmap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 " lnext / lprev / cnext / cprev
 nmap <Leader>ln :lnext<CR>
 nmap <Leader>lp :lprev<CR>
+nmap <Leader>ll :llist<CR>
 nmap <Leader>cn :cnext<CR>
 nmap <Leader>cp :cprev<CR>
+nmap <Leader>cl :clist<CR>
 
 " spell check
 " .. enable Enligsh spell check:
@@ -104,8 +103,7 @@ vmap <Leader>i S*
 vmap <Leader>b S*lvt*S*
 
 " Abbreviations
-iab <expr> dts strftime("%Y-%m-%d")
-iab tt [ ]
+iab <expr> today strftime("%Y-%m-%d")
 
 " Reload config
 nmap <Leader>rf :source ~/.config/nvim/init.vim<CR>
@@ -133,13 +131,9 @@ map <Leader>nf :NERDTreeFind<CR>
 " NERDCommenter
 Plug 'preservim/nerdcommenter'
 
-" AirLine
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-set laststatus=2
+" Status line
+Plug 'nvim-lualine/lualine.nvim'
 set noshowmode
-let g:airline_powerline_fonts = 1
-let g:airline_theme='wombat'  " solarized
 
 " Fuzzy find
 Plug 'junegunn/fzf'
@@ -151,13 +145,9 @@ set wildignore+=*/node_modules/*,*/build/*,*/target/*,*/.git/*,*/*.egg-info/*,*/
 " (inserts matching parenthesis, brackets, etc.)
 Plug 'raimondi/delimitmate'
 
-" Solarized
-Plug 'lifepillar/vim-solarized8', { 'branch': 'neovim' }
-set termguicolors
+" Color theme
 set background=dark
-let g:solarized_visibility = "low"
-let g:solarized_italics = 0
-autocmd vimenter * ++nested colorscheme retrobox  " solarized8
+autocmd vimenter * ++nested colorscheme retrobox
 
 " Ack (uses ag)
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
@@ -227,7 +217,7 @@ endfunction
 autocmd VimEnter * call SetupRainbowParens()
 
 " Copilot
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 " disable by default
 " let g:copilot_filetypes = {'*' : v:false}
 
