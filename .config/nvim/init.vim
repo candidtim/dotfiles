@@ -146,7 +146,7 @@ set wildignore+=*/node_modules/*,*/build/*,*/target/*,*/.git/*,*/*.egg-info/*,*/
 Plug 'raimondi/delimitmate'
 
 " Color theme
-set background=dark
+set background=light
 autocmd vimenter * ++nested colorscheme retrobox
 
 " Ack (uses ag)

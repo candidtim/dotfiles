@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sed -i '' "s/set background=.*/set background=dark/" ~/.config/nvim/init.vim
-sed -i '' "s/colors.*conf/colors.dark.conf/" ~/.tmux.conf
-tmux source-file ~/.tmux.conf

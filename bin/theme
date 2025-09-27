@@ -1,0 +1,15 @@
+#!/bin/bash
+
+theme=${1:-dark}
+echo "Switching to theme $theme"
+
+sed -i '' "s/background=[a-zA-Z]*/background=$theme/" ~/.config/nvim/init.vim
+
+sed -i '' "s/@tmux-gruvbox '[a-zA-Z]*'/@tmux-gruvbox '$theme'/" ~/.tmux.conf
+tmux source-file ~/.tmux.conf
+
+if [[ -f ~/Library/Application\ Support/com.mitchellh.ghostty/config ]]; then
+  sed -i '' "s/Gruvbox [a-zA-Z]*/Gruvbox ${theme}/" ~/Library/Application\ Support/com.mitchellh.ghostty/config
+elif [[ -f "$XDG_CONFIG_HOME/ghostty/config" ]]; then
+  sed -i '' "s/Gruvbox [a-zA-Z]*/Gruvbox ${theme}/" "$XDG_CONFIG_HOME/ghostty/config"
+fi
