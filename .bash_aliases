@@ -26,6 +26,8 @@ alias gdc='git diff --cached --color -- ":!*.lock" | diff-so-fancy | less'
 alias gdt='git difftool'
 alias gpl='git pull --rebase'
 alias tiga='tig --all'
+alias gka='gitk --all &'
+alias gk='gitk &'
 
 # tmux
 alias tm='tmux list-sessions 2>/dev/null | grep "0:" && tmux attach-session -t 0 || tmux'

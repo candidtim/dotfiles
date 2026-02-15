@@ -1,10 +1,66 @@
 --
--- Lualine
+-- Configuration
+--
+
+vim.opt.fillchars = { eob = " " } -- no ~ in the end of the buffers
+
+--
+-- Colors
+--
+require('solarized').setup({
+  variant = 'summer',
+})
+
+--
+-- Plugins
 --
 
 require('lualine').setup {
-  options = { theme = 'gruvbox' }
+  options = { theme = 'solarized' }
 }
+
+require("nvim-autopairs").setup {}
+
+require('neo-tree').setup({
+  window = {
+    position = "right",
+    width = 30,
+  },
+})
+
+
+--
+-- Telescope
+--
+
+local telescope = require('telescope')
+local actions = require('telescope.actions')
+telescope.setup({
+  defaults = {
+    layout_strategy = 'horizontal',
+    layout_config = {
+      width = 0.99,
+      height = 0.99,
+    },
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-l>"] = actions.send_to_loclist + actions.open_loclist,
+      },
+    },
+    file_ignore_patterns = vim.fn.split(vim.o.wildignore, ","),
+  },
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+    buffers = {
+      show_all_buffers = true,
+      sort_lastused = true,
+    },
+  },
+})
 
 
 --
@@ -34,7 +90,6 @@ vim.lsp.enable('ruff')
 
 vim.lsp.enable('gopls')
 vim.lsp.enable('hls')
-
 
 --
 -- LSP key bindings

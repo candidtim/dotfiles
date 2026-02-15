@@ -29,8 +29,8 @@ unfocused_hollow = true
 size = 16.0
 
 [font.normal]
-family = "Ubuntu Mono derivative Powerline"
-style = "Regular"
+family = "Roboto Mono Light for Powerline"
+style = "Light"
 
 [mouse]
 hide_when_typing = false

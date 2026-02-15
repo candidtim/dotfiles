@@ -23,23 +23,19 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab           " use TAB to insert spaces
 
-" Do not show ~ at the end of the buffers
-let &fcs='eob: '
+" 'Ignored' files and directories (file search, etc.)
+set wildignore+=*/node_modules/*,*/build/*,*/target/*,*/.git/*,*/*.egg-info/*,*/dist/*,*.class,*/__pycache__/*,*.pyc,*.fasl
 
 " Autoread and autowrite
-set autoread            " autoread files when changed outside
-" set autowriteall        " autowrite on :quit
 autocmd InsertLeave,TextChanged,FocusLost * silent! wall " autosave
 autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespaces on save
 
-" Capital W to write with sudo
-comm W exec 'w !sudo tee % > /dev/null' | e!
 
 "
-" Key mappings
+" Key mappings and custom commands
 "
 
-" use spacebar as leader
+" leader = SPC
 let mapleader = " "
 
 " up and down on wrapped lines
@@ -48,41 +44,28 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" keep the current split only, à-la Emacs
+" minimal Emacs compatibility
 nmap <C-x>1 :only<CR>
+inoremap <C-g> <Esc>
+cnoremap <C-g> <Esc>
 
-" save, open, tags, switch buffers, etc.:
-" .. save buffer:
+" save, open, other behavior...
 nmap <Leader>fs :w<CR>
-" .. reload buffer:
 nmap <Leader>fe :e<CR>
-" .. find files:
-nmap <Leader>ff :Files<CR>
-" .. find 'project' files (in Git repo):
-nmap <Leader>fp :GFiles<CR>
-" .. find in file edit history:
-nmap <Leader>fh :History<CR>
-nmap <Leader>fr :History<CR>
-" .. list buffers:
-nmap <Leader>bb :Buffers<CR>
-" .. quit:
 nmap <Leader>q :quit<CR>
-" .. vertical split:
 nmap <Leader>v :vsplit<CR>
-" .. horizontal split:
 nmap <Leader>h :split<CR>
-" .. even out all splits:
-nmap <Leader>= <C-W>=
-" remove search highlight:
-nmap <silent> <Leader>. :nohlsearch<CR>
+nmap <Leader>= <C-W>= " even out all splits
+nmap <silent> <Leader>. :nohlsearch<CR> " remove search highlight
 
 " temp macros: start with qq, stop with q, repeat with Q
 nmap Q @q
 
 " make 0 jump between ^ and 0
 nmap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
+vmap <expr> <silent> 0 col('.') == match(getline('.'),'\S')+1 ? '0' : '^'
 
-" lnext / lprev / cnext / cprev
+" location and quickfix lists
 nmap <Leader>ln :lnext<CR>
 nmap <Leader>lp :lprev<CR>
 nmap <Leader>ll :llist<CR>
@@ -91,22 +74,29 @@ nmap <Leader>cp :cprev<CR>
 nmap <Leader>cl :clist<CR>
 
 " spell check
-" .. enable Enligsh spell check:
 nmap <Leader>se :set spell spelllang=en_us<CR>
-" .. enable French spell check:
 nmap <Leader>sf :set spell spelllang=fr_fr<CR>
-" .. disable spell check:
 nmap <Leader>so :set nospell<CR>
 
-" wrap current visual selection in Markdown *italics* and **bold** syntax
+" markdown editing:  *italics* and **bold**
 vmap <Leader>i S*
 vmap <Leader>b S*lvt*S*
 
-" Abbreviations
+" abbreviations
 iab <expr> today strftime("%Y-%m-%d")
 
-" Reload config
+" reload config
 nmap <Leader>rf :source ~/.config/nvim/init.vim<CR>
+
+" capital W to write with sudo
+comm W exec 'w !sudo tee % > /dev/null' | e!
+
+
+"
+" Colors
+"
+set background=light
+
 
 "
 " Plugins
@@ -114,49 +104,41 @@ nmap <Leader>rf :source ~/.config/nvim/init.vim<CR>
 
 call plug#begin()
 
-" NERDTree
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-let g:NERDTreeWinPos = "right" " NERDTree on the right side
-let g:NERDTreeMouseMode = 2
-let g:NERDTreeMinimalMenu=1
-let g:NERDTreeRespectWildIgnore=1
-let g:NERDTreeIgnore=['__pycache__']
-" close vim if all buffers are closed but the NERDTree
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" mappings:
-map <C-e> :NERDTreeToggle<CR>
-map <Leader>nn :NERDTreeToggle<CR>
-map <Leader>nf :NERDTreeFind<CR>
+" Solarized
+Plug 'maxmx03/solarized.nvim'
+autocmd vimenter * ++nested colorscheme solarized
 
-" NERDCommenter
-Plug 'preservim/nerdcommenter'
+" Common dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 
-" Status line
+" neo-tree
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
+map <C-e> :Neotree toggle<CR>
+map <Leader>nn :Neotree toggle<CR>
+map <Leader>nf :Neotree reveal<CR>
+autocmd BufEnter * if winnr('$') == 1 && &filetype == 'neo-tree' | quit | endif
+
+" status line
 Plug 'nvim-lualine/lualine.nvim'
 set noshowmode
 
-" Fuzzy find
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-set rtp+=~/.fzf
-set wildignore+=*/node_modules/*,*/build/*,*/target/*,*/.git/*,*/*.egg-info/*,*/dist/*,*.class,*/__pycache__/*,*.pyc,*.fasl
+" autopairs
+Plug 'windwp/nvim-autopairs'
 
-" delimitMate
-" (inserts matching parenthesis, brackets, etc.)
-Plug 'raimondi/delimitmate'
-
-" Color theme
-set background=light
-autocmd vimenter * ++nested colorscheme retrobox
-
-" Ack (uses ag)
-Plug 'mileszs/ack.vim', { 'on': 'Ack' }
-let g:ackprg = 'ag --hidden --vimgrep'
-let g:ackhighlight = 1
-" mappings:
-nmap <Leader>at :Ack "TODO\|FIXME"<CR>
-nmap <Leader>aa :Ack!<Space>
-nmap <Leader>af :Ack! "\b<cword>\b" <CR>
+" Telescope
+Plug 'nvim-telescope/telescope.nvim'
+" .. finding files
+nmap <Leader>ff <cmd>Telescope find_files<CR>
+nmap <Leader>fp <cmd>Telescope git_files<CR>
+nmap <Leader>fh <cmd>Telescope oldfiles<CR>
+nmap <Leader>fr <cmd>Telescope oldfiles<CR>
+nmap <Leader>bb <cmd>Telescope buffers<CR>
+" .. findging text
+nmap <Leader>aa <cmd>Telescope live_grep<CR>
+nmap <Leader>af <cmd>Telescope grep_string<CR>
+nmap <Leader>at <cmd>Telescope grep_string search=TODO\|FIXME<CR>
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
@@ -170,7 +152,7 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_override_sign_column_highlight = 0
 
-" Fugitive
+" fugitive
 Plug 'tpope/vim-fugitive'
 
 " Start screen
@@ -187,7 +169,7 @@ let g:rooter_silent_chdir = 1 " don't echo when changing the root dir
 Plug 'christoomey/vim-tmux-navigator'
 
 " Vlime
-Plug 'vlime/vlime', {'rtp': 'vim/'}
+Plug 'vlime/vlime', {'rtp': 'vim/', 'for': ['lisp', 'scheme', 'clojure']}
 let g:vlime_compiler_policy = {"DEBUG": 3}
 nnoremap <expr> <LocalLeader>ql
   \ ":call vlime#plugin#SendToREPL('(asdf:load-system \"" . input("System name: ") . "\")')<CR>"
@@ -218,13 +200,16 @@ autocmd VimEnter * call SetupRainbowParens()
 
 " Copilot
 Plug 'github/copilot.vim'
-" disable by default
-" let g:copilot_filetypes = {'*' : v:false}
+let g:copilot_enabled = v:false
+imap <silent><script><expr> <C-c> copilot#Suggest()
 
 " LSP configs
 Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 
-" Load lua/init.lua
+
+"
+" Load lua config
+"
 lua require('init')
