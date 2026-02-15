@@ -10,16 +10,22 @@ fi
 
 echo "Switching to $theme theme."
 
-sed -i '' "s/background=[a-zA-Z]*/background=$theme/" ~/.config/nvim/init.vim
-sed -i '' "s/solarized_[a-zA-Z]*/solarized_$theme/" ~/.config/nvim/lua/init.lua
-
-sed -i '' "s/@colors-solarized '[a-zA-Z]*'/@colors-solarized '$theme'/" ~/.tmux.conf
-tmux source-file ~/.tmux.conf
-
-if [[ -f ~/Library/Application\ Support/com.mitchellh.ghostty/config ]]; then
-  sed -i '' "s/Builtin Solarized [a-zA-Z]*/Builtin Solarized ${theme}/" ~/Library/Application\ Support/com.mitchellh.ghostty/config
-elif [[ -f "$XDG_CONFIG_HOME/ghostty/config" ]]; then
-  sed -i '' "s/Builtin Solarized [a-zA-Z]*/Builtin Solarized ${theme}/" "$XDG_CONFIG_HOME/ghostty/config"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  SED_INPLACE="-i ''"
+  GHOSTTY_CONIFG="~/Library/Application Support/com.mitchellh.ghostty/config"
+else
+  SED_INPLACE="-i"
+  GHOSTTY_CONIFG=~/.config/ghostty/config
 fi
 
-echo "Cmd+Shift+, to reload the theme."
+# Vim:
+sed $SED_INPLACE "s/background=[a-zA-Z]*/background=$theme/" ~/.config/nvim/init.vim
+sed $SED_INPLACE "s/solarized_[a-zA-Z]*/solarized_$theme/" ~/.config/nvim/lua/init.lua
+
+# tmux:
+sed $SED_INPLACE "s/@colors-solarized '[a-zA-Z]*'/@colors-solarized '$theme'/" ~/.tmux.conf
+tmux source-file ~/.tmux.conf
+
+# Ghostty:
+sed $SED_INPLACE "s/Builtin Solarized [a-zA-Z]*/Builtin Solarized ${theme}/" $GHOSTTY_CONIFG
+echo "Super+Shift+, to reload the theme."
