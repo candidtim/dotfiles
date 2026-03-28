@@ -32,6 +32,9 @@
   pl = pull
   aa = add --all .
   ri = rebase --interactive --autosquash
+  wt = worktree
+  wta = worktree add
+  wtr = worktree remove
 [merge]
   tool = nvimdiff
   conflictstyle = diff3

@@ -11,21 +11,22 @@ fi
 echo "Switching to $theme theme."
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  SED_INPLACE="-i ''"
-  GHOSTTY_CONIFG="~/Library/Application Support/com.mitchellh.ghostty/config"
+  GHOSTTY_CONFIG=~/Library/Application\ Support/com.mitchellh.ghostty/config
+  sedi() { sed -i '' "$@"; }
 else
-  SED_INPLACE="-i"
-  GHOSTTY_CONIFG=~/.config/ghostty/config
+  GHOSTTY_CONFIG=~/.config/ghostty/config
+  sedi() { sed -i "$@"; }
 fi
 
 # Vim:
-sed $SED_INPLACE "s/background=[a-zA-Z]*/background=$theme/" ~/.config/nvim/init.vim
-sed $SED_INPLACE "s/solarized_[a-zA-Z]*/solarized_$theme/" ~/.config/nvim/lua/init.lua
+sedi "s/background=[a-zA-Z]*/background=$theme/" ~/.config/nvim/init.vim
+sedi "s/solarized_[a-zA-Z]*/solarized_$theme/" ~/.config/nvim/lua/init.lua
 
 # tmux:
-sed $SED_INPLACE "s/@colors-solarized '[a-zA-Z]*'/@colors-solarized '$theme'/" ~/.tmux.conf
+sedi "s/@colors-solarized '[a-zA-Z]*'/@colors-solarized '$theme'/" ~/.tmux.conf
 tmux source-file ~/.tmux.conf
 
 # Ghostty:
-sed $SED_INPLACE "s/Builtin Solarized [a-zA-Z]*/Builtin Solarized ${theme}/" $GHOSTTY_CONIFG
+themeCap="$(tr '[:lower:]' '[:upper:]' <<< ${theme:0:1})${theme:1}"
+sedi "s/iTerm2 Solarized [a-zA-Z]*/iTerm2 Solarized ${themeCap}/" "$GHOSTTY_CONFIG"
 echo "Super+Shift+, to reload the theme."

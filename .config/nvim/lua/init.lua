@@ -26,6 +26,7 @@ require('neo-tree').setup({
     position = "right",
     width = 30,
   },
+  use_libuv_file_watcher = true,
 })
 
 
