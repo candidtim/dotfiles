@@ -40,8 +40,9 @@ Installation:
 Configuration:
 
  - Install tmux plugins with Prefix+I
- - Enable sudo password feedback: `sudo visudo` and add `pwfeedback` after
-   `env_reset` (comma-separated)
+ - Configure sudo behavior, in sudoers (from `sudo visudo`):
+   - add `Defaults env_keep += "EDITOR"`
+   - add `pwfeedback` after `env_reset` (comma-separated)
 
 ## Keeping the dotfiles up to date
 
