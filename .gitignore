@@ -2,7 +2,6 @@
 .DS_Store
 
 # Claude Code local files
-CLAUDE.md
 .claude/settings.local.json
 
 # Custom local files

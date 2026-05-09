@@ -20,13 +20,12 @@ fi
 
 # Vim:
 sedi "s/background=[a-zA-Z]*/background=$theme/" ~/.config/nvim/init.vim
-sedi "s/solarized_[a-zA-Z]*/solarized_$theme/" ~/.config/nvim/lua/init.lua
 
 # tmux:
-sedi "s/@colors-solarized '[a-zA-Z]*'/@colors-solarized '$theme'/" ~/.tmux.conf
+sedi "s/@tmux-gruvbox '[a-zA-Z]*'/@tmux-gruvbox '$theme'/" ~/.tmux.conf
 tmux source-file ~/.tmux.conf
 
 # Ghostty:
 themeCap="$(tr '[:lower:]' '[:upper:]' <<< ${theme:0:1})${theme:1}"
-sedi "s/iTerm2 Solarized [a-zA-Z]*/iTerm2 Solarized ${themeCap}/" "$GHOSTTY_CONFIG"
+sedi "s/Gruvbox Material [a-zA-Z]*/Gruvbox Material ${themeCap}/" "$GHOSTTY_CONFIG"
 echo "Super+Shift+, to reload the theme."

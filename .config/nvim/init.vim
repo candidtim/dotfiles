@@ -104,9 +104,10 @@ set background=light
 
 call plug#begin()
 
-" Solarized
-Plug 'maxmx03/solarized.nvim'
-autocmd vimenter * ++nested colorscheme solarized
+" Theme
+
+Plug 'ellisonleao/gruvbox.nvim'
+autocmd vimenter * ++nested colorscheme gruvbox
 
 " Common dependencies
 Plug 'nvim-lua/plenary.nvim'
@@ -187,6 +188,7 @@ nmap <Leader>wt :lopen<CR><C-W>x<C-W>r:VimwikiSearchTags<Space>
 " Markdown preview
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 let g:instant_markdown_autostart = 0
+nmap <Leader>mp :InstantMarkdownPreview<CR>
 
 " Rainbow parentheses
 Plug 'kien/rainbow_parentheses.vim'

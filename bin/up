@@ -1,5 +1,14 @@
 #!/bin/zsh -i
 
+os="$(uname)"
+if [[ "$os" == "Darwin" ]]; then
+  brew update && brew upgrade
+elif [[ "$os" == "Linux" ]]; then
+  dist=$(grep ^ID= /etc/os-release | cut -d= -f2)
+  if [[ "$dist" == "Darwin" ]]; then
+    sudo dnf update
+  fi
+fi
+
 omz update
-brew update && brew upgrade
 nvim +PlugUpdate +qall

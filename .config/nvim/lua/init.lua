@@ -5,18 +5,11 @@
 vim.opt.fillchars = { eob = " " } -- no ~ in the end of the buffers
 
 --
--- Colors
---
-require('solarized').setup({
-  variant = 'summer',
-})
-
---
 -- Plugins
 --
 
 require('lualine').setup {
-  options = { theme = 'solarized' }
+  options = { theme = 'gruvbox' }
 }
 
 require("nvim-autopairs").setup {}
@@ -26,7 +19,9 @@ require('neo-tree').setup({
     position = "right",
     width = 30,
   },
-  use_libuv_file_watcher = true,
+  filesystem = {
+    use_libuv_file_watcher = true,
+  },
 })
 
 
