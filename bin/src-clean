@@ -2,11 +2,23 @@
 
 if [ "$1" != "--yes" ]; then
   echo "Deletes all build and artifact directories under ~/src"
-  echo "Usage: ,src-clean.sh --yes"
+  echo "Usage: src-clean --yes"
   exit 0
 fi
 
-find ~/src -type d -name "node_modules" -exec rm -rf {} \;
-find ~/src -type d -name "target" -exec rm -rf {} \;
-find ~/src -type d -name "build" -exec rm -rf {} \;
-find ~/src -type d -name "venv" -exec rm -rf {} \;
+# JavaScript / TypeScript
+for name in node_modules dist out .next .nuxt .svelte-kit .output coverage .turbo; do
+  find ~/src -type d -name "$name" -exec rm -rf {} +
+done
+find ~/src -name "*.tsbuildinfo" -delete
+
+# Python
+for name in __pycache__ .pytest_cache .mypy_cache .ruff_cache .tox .nox htmlcov \
+              .eggs dist build "*.egg-info" .coverage; do
+  find ~/src -type d -name "$name" -exec rm -rf {} +
+done
+find ~/src -name ".coverage" -type f -delete
+find ~/src -name "coverage.xml" -delete
+
+# General
+find ~/src -name ".DS_Store" -delete

@@ -105,7 +105,6 @@ set background=light
 call plug#begin()
 
 " Theme
-
 Plug 'ellisonleao/gruvbox.nvim'
 autocmd vimenter * ++nested colorscheme gruvbox
 
@@ -201,15 +200,24 @@ endfunction
 autocmd VimEnter * call SetupRainbowParens()
 
 " Copilot
-Plug 'github/copilot.vim'
-let g:copilot_enabled = v:false
-imap <silent><script><expr> <C-c> copilot#Suggest()
+" Plug 'github/copilot.vim'
+" let g:copilot_enabled = v:false
+" imap <silent><script><expr> <C-c> copilot#Suggest()
+
+" llama.vim
+" Plug 'ggml-org/llama.vim'
+" let g:llama_config = {
+"     \ 'endpoint_fim':           'http://127.0.0.1:8080/infill',
+"     \ 'endpoint_inst':          'http://127.0.0.1:8080/v1/chat/completions',
+"     \ 'model_fim':              'Qwen3.6-35B-A3B-UD-Q4_K_XL',
+"     \ 'model_inst':             'Qwen3.6-35B-A3B-UD-Q4_K_XL',
+"     \ 'show_info': 0
+"     \ }
 
 " LSP configs
 Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
-
 
 "
 " Load lua config
