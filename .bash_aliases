@@ -44,11 +44,46 @@ alias swank='rlwrap sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vli
 # make
 alias mk=make
 
-# docker
-alias dk=docker
-alias dc="docker compose"
+# docker / podman
+if [[ "$(uname)" == "Darwin" ]]; then
+  alias dk=docker
+  alias dc="docker compose"
+else
+  alias dk=podman
+  alias dc="podman compose"
+fi
 
 # kubernetes
 alias k=kubectl
 alias kcgc='kubectl config get-contexts'
 alias kcuc='kubectl config use-context'
+
+# devcontainer shim to support podman, adds "stop" and "down" commands:
+devcontainer() {
+
+    # docker/podman switch:
+    local dockercli
+    if [[ "$(uname)" == "Darwin" ]]; then
+        dockercli=docker
+    else
+        dockercli=podman
+    fi
+
+    # 'stop' and 'down' commands:
+    if [[ "$1" == "stop" || "$1" == "down" ]]; then
+        local hostname
+        hostname=$(command devcontainer exec --docker-path $dockercli hostname)
+        $dockercli stop "$hostname"
+        if [[ "$1" == "down" ]]; then
+            $dockercli rm "$hostname"
+        fi
+
+    # proxy other commands (up, exec, etc.):
+    else
+        local args=("$1" "--docker-path" "$dockercli")
+        shift
+        args+=("$@")
+        command devcontainer "${args[@]}"
+    fi
+}
+alias dev=devcontainer

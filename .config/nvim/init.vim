@@ -176,14 +176,6 @@ nnoremap <expr> <LocalLeader>ql
 nnoremap <expr> <LocalLeader>qt
   \ ":call vlime#plugin#SendToREPL('(asdf:test-system \"" . input("System name: ") . "\")')<CR>"
 
-" VimWiki
-Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
-let g:vimwiki_list =
-  \ [{'path': '~/Dropbox/Documents/notes/', 'syntax': 'markdown', 'ext': '.md'}]
-nmap <Leader>ww :VimwikiIndex<CR>
-nmap <Leader>wf :lopen<CR><C-W>x<C-W>r:VimwikiSearch<Space>
-nmap <Leader>wt :lopen<CR><C-W>x<C-W>r:VimwikiSearchTags<Space>
-
 " Markdown preview
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 let g:instant_markdown_autostart = 0
@@ -207,11 +199,12 @@ autocmd VimEnter * call SetupRainbowParens()
 " llama.vim
 " Plug 'ggml-org/llama.vim'
 " let g:llama_config = {
-"     \ 'endpoint_fim':           'http://127.0.0.1:8080/infill',
-"     \ 'endpoint_inst':          'http://127.0.0.1:8080/v1/chat/completions',
-"     \ 'model_fim':              'Qwen3.6-35B-A3B-UD-Q4_K_XL',
-"     \ 'model_inst':             'Qwen3.6-35B-A3B-UD-Q4_K_XL',
-"     \ 'show_info': 0
+"     \ 'endpoint_fim':  'http://127.0.0.1:8080/infill',
+"     \ 'endpoint_inst': 'http://127.0.0.1:8080/v1/chat/completions',
+"     \ 'model_fim':     'gemma-4-26B-A4B-it-UD-Q4_K_XL',
+"     \ 'model_inst':    'gemma-4-26B-A4B-it-UD-Q4_K_XL',
+"     \ 'show_info':     0,
+"     \ 'keymap_inst_trigger': "<C-c>"
 "     \ }
 
 " LSP configs
