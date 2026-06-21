@@ -23,6 +23,10 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab           " use TAB to insert spaces
 
+" Show tabs explicitly (and some other corner cases)
+set list
+set listchars=tab:>,trail:·,nbsp:·
+
 " 'Ignored' files and directories (file search, etc.)
 set wildignore+=*/node_modules/*,*/build/*,*/target/*,*/.git/*,*/*.egg-info/*,*/dist/*,*.class,*/__pycache__/*,*.pyc,*.fasl
 
@@ -119,6 +123,7 @@ map <C-e> :Neotree toggle<CR>
 map <Leader>nn :Neotree toggle<CR>
 map <Leader>nf :Neotree reveal<CR>
 autocmd BufEnter * if winnr('$') == 1 && &filetype == 'neo-tree' | quit | endif
+" more config in init.lua
 
 " status line
 Plug 'nvim-lualine/lualine.nvim'
@@ -139,6 +144,7 @@ nmap <Leader>bb <cmd>Telescope buffers<CR>
 nmap <Leader>aa <cmd>Telescope live_grep<CR>
 nmap <Leader>af <cmd>Telescope grep_string<CR>
 nmap <Leader>at <cmd>Telescope grep_string search=TODO\|FIXME<CR>
+" more config in init.lua
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
@@ -168,14 +174,6 @@ let g:rooter_silent_chdir = 1 " don't echo when changing the root dir
 " tmux navigator
 Plug 'christoomey/vim-tmux-navigator'
 
-" Vlime
-Plug 'vlime/vlime', {'rtp': 'vim/', 'for': ['lisp', 'scheme', 'clojure']}
-let g:vlime_compiler_policy = {"DEBUG": 3}
-nnoremap <expr> <LocalLeader>ql
-  \ ":call vlime#plugin#SendToREPL('(asdf:load-system \"" . input("System name: ") . "\")')<CR>"
-nnoremap <expr> <LocalLeader>qt
-  \ ":call vlime#plugin#SendToREPL('(asdf:test-system \"" . input("System name: ") . "\")')<CR>"
-
 " Markdown preview
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 let g:instant_markdown_autostart = 0
@@ -184,10 +182,8 @@ nmap <Leader>mp :InstantMarkdownPreview<CR>
 " Rainbow parentheses
 Plug 'kien/rainbow_parentheses.vim'
 function! SetupRainbowParens()
-    autocmd FileType lisp,clojure,scheme,json RainbowParenthesesActivate
-    autocmd Syntax lisp,clojure,scheme RainbowParenthesesLoadRound
-    autocmd Syntax clojure RainbowParenthesesLoadSquare
-    autocmd Syntax json RainbowParenthesesLoadBraces
+  autocmd FileType json RainbowParenthesesActivate
+  autocmd Syntax json RainbowParenthesesLoadBraces
 endfunction
 autocmd VimEnter * call SetupRainbowParens()
 
@@ -196,19 +192,11 @@ autocmd VimEnter * call SetupRainbowParens()
 " let g:copilot_enabled = v:false
 " imap <silent><script><expr> <C-c> copilot#Suggest()
 
-" llama.vim
-" Plug 'ggml-org/llama.vim'
-" let g:llama_config = {
-"     \ 'endpoint_fim':  'http://127.0.0.1:8080/infill',
-"     \ 'endpoint_inst': 'http://127.0.0.1:8080/v1/chat/completions',
-"     \ 'model_fim':     'gemma-4-26B-A4B-it-UD-Q4_K_XL',
-"     \ 'model_inst':    'gemma-4-26B-A4B-it-UD-Q4_K_XL',
-"     \ 'show_info':     0,
-"     \ 'keymap_inst_trigger': "<C-c>"
-"     \ }
+" Minuet
+Plug 'milanglacier/minuet-ai.nvim'  " config in init.lua
 
 " LSP configs
-Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'  " config in init.lua
 
 call plug#end()
 

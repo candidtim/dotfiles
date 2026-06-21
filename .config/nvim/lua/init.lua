@@ -26,6 +26,40 @@ require('neo-tree').setup({
 
 
 --
+-- Minuet
+--
+require('minuet').setup {
+  provider = 'openai_fim_compatible',
+  n_completions = 1,
+  context_window = 1024,
+  provider_options = {
+    openai_fim_compatible = {
+        api_key = 'UNSLOTH_STUDIO_AUTH_TOKEN',
+        name = 'Unsloth Studio',
+        end_point = 'http://127.0.0.1:6002/v1/completions',
+        model = '/',
+        optional = {
+          max_tokens = 56,
+          temperature = 0.6,
+          top_p = 0.9,
+          top_k = 20,
+          min_p = 0,
+        },
+    },
+  },
+  virtualtext = {
+    auto_trigger_ft = {'python'},
+    keymap = {
+      accept = '<A-A>',
+      accept_line = '<A-a>',
+      accept_n_lines = '<A-z>',
+      dismiss = '<A-e>',
+    },
+  },
+}
+
+
+--
 -- Telescope
 --
 
@@ -84,8 +118,13 @@ vim.lsp.config('ruff', {
 })
 vim.lsp.enable('ruff')
 
-vim.lsp.enable('gopls')
-vim.lsp.enable('hls')
+vim.lsp.config('ty', {
+  settings = {
+    ty = {
+    }
+  }
+})
+vim.lsp.enable('ty')
 
 --
 -- LSP key bindings

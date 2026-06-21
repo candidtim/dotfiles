@@ -1,0 +1,55 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+  "permission": {
+    "*": "ask",
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "edit": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "bash": {
+      "*": "ask",
+      "git *": "allow",
+      "grep *": "allow",
+      "mkdir *": "allow",
+      "uv run ruff *": "allow",
+      "uv run ty *": "allow"
+    },
+    "task": "ask",
+    "skill": "allow",
+    "lsp": "allow",
+    "lsp": "allow",
+    "question": "allow",
+    "websearch": "ask",
+    "webfetch": "allow",
+    "external_directory": "ask",
+    "doom_loop": "ask"
+  },
+  "provider": {
+    "unsloth-studio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Unsloth Studio",
+      "options": {
+        "baseURL": "http://127.0.0.1:6002/v1",
+        "apiKey": "{env:UNSLOTH_STUDIO_AUTH_TOKEN}"
+      },
+      "models": {
+        "/": {
+          "name": "Default",
+          "limit": {
+            "context": 131072,
+            "output": 131072
+          }
+        }
+      }
+    }
+  },
+  "experimental": {
+    "disable_paste_summary": true
+  }
+}

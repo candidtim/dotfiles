@@ -8,6 +8,7 @@ cp -f ~/.tmux.conf .
 cp -f ~/.config/nvim/init.vim ./.config/nvim/
 cp -f ~/.config/nvim/lua/init.lua ./.config/nvim/lua/
 cp -f ~/.oh-my-zsh/themes/candidtim.zsh-theme ./.oh-my-zsh/themes
+cp -f ~/.config/opencode/opencode.json ./.config/opencode/opencode.json
 
 if [ "$(uname)" == "Darwin" ]; then
   sed -i '' '/user/,+2d' .gitconfig

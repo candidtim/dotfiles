@@ -39,10 +39,3 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install Python apps
 source ~/src/dotfiles/install-py.sh
-
-# Install fonts
-mkdir -p ~/.local/share/fonts
-git clone https://github.com/githubnext/monaspace.git ~/tmp/monaspace
-pushd ~/tmp/montaspace && bash util/install_linux.sh && popd
-fc-cache ~/.local/share/fonts
-rm -rf ~/tmp/monaspace
